@@ -25,6 +25,8 @@ log10(25) # 2+ 2
 x = 2
 x <- 2
 
+x <- x + 2 # <- ALT + - 
+
 60 -> x
 
 
@@ -32,9 +34,9 @@ peso <- 83
 altura <- 1.85
 imc <- peso/altura^2
 
-diametro
+#diametro
 
-ls()
+    ls()
 rm(x)
 
 x
@@ -77,7 +79,5 @@ save.image("file.RData")
 # dir(pattern = "*.txt")
 
 writeLines(R.version.string, con = "../R-versao.txt")
-
-
 
 getwd()
