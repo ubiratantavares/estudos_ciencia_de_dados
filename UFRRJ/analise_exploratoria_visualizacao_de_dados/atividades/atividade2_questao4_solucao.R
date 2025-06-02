@@ -12,10 +12,10 @@ mediana <- 700
 moda <- 600
 curtose <- 5.2
 
-# criando o dataframe
+# criando um dataframe
 df <- tibble::tibble(Renda = renda)
 
-# visualizando os dados simulados
+# construindo o gráfico com os dados simulados
 ggplot(df, aes(x = Renda)) +
     geom_histogram(bins = 30, fill = "skyblue", color = "white") +
     
