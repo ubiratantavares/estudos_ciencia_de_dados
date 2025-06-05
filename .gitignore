@@ -2,6 +2,8 @@
 *.mp4
 *.mkv
 *.csv
+*.xls
+*.xlsx
 *.dat
 *.png
 *.txt
