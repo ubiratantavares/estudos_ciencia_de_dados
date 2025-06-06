@@ -1,10 +1,11 @@
 *.mp3
 *.mp4
 *.mkv
+*.png
+*.txt
 *.csv
 *.xls
 *.xlsx
 *.dat
-*.png
-*.txt
+*.ods
 *.zip
