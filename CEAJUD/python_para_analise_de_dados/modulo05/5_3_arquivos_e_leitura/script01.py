@@ -1,0 +1,5 @@
+arq = open("documento.txt", "r")
+print(arq)
+print(type(arq))
+print(arq.read())
+arq.close()
