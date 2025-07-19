@@ -1,0 +1,373 @@
+---
+title: "Introdução ao ambiente RStudio e criação de gráficos com ggplot2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descrição do curso
+
+Esse curso apresentará a linguagem de programação R, criação de funções,
+elaboração de gráficos e aplicações básicas em estatística. Os recursos serão
+trabalhados usando os pacotes dplyr e ggplot. Esta é uma introdução para aqueles
+que não têm experiência anterior em R e estão interessados em realizar análises
+exploratórias de dados.
+
+## Objetivos
+
+* Conhecer o progama bem como suas principais funcionalidades em problemas variados.
+
+* Aplicar o recurso computacional em análises estatísticas (ou não).
+
+* Aprender análises estatísticas variadas, cálculos matemáticos e produção de 
+gráficos.
+
+## Instalação do RStudio
+
+Para uso do RStudio, é necessário ter instalado o R em seu computador. 
+
+Para isso, siga os passos a seguir:
+
+* **Instalação do R**
+
+1. Entrar no site <https://www.r-project.org/>
+
+2. Clicar no menu CRAN, parte esquerda da página, escolher o espelho (mirror) Brasil.
+
+3. Você verá que existem vários mirrors no Brasil. Escolha um, por exemplo o da 
+Universidade Federal do Parana, no link <http://cran-r.c3sl.ufpr.br/>
+
+4. Se o seu sistema operacional for Windows, clicar em Download R for Windows, 
+subdiretório base e baixar o programa em Download R 4.0.2 for Windows
+
+* **Instalando o RStudio**
+
+1. Entre no site do RStudio: <https://rstudio.com/>.
+
+2. No menu superior direito, clique em Products, RStudio.
+
+3. O RStudio tem uma versão paga, mas estamos interessados na sua versão 
+gratuita. Procure por RStudio Desktop.
+
+4. Clique em Download RStudio Desktop, Procure a opção Free e clique em Download.
+
+5. Escolha de acordo com o sistema operacional utilizado.
+
+6. No caso do sistema Windows, clicar em Download RStudio for Windows.
+
+## Unidade 1
+
+### 1.1 Apresentação e aspectos iniciais do RStudio
+
+<https://youtu.be/BVIHTq8C2aM>
+
+```{r}
+
+# exemplo1
+7 * 9 + 2 * 6
+2.5 * 4
+(50 + 7) / (8 * (3 - 5/2))
+
+3 ^ 4
+
+# exemplo 2
+x <- 15
+x + 5
+x * x / 2
+2 ^ x
+y <- x / 3; y
+
+# exemplo 3
+vetor.num <- c(1, 2, 5, 8, 1001)
+
+soma <- 0
+
+for (item in vetor.num) {
+    soma <- soma + item;
+}
+
+soma; sum(vetor.num)
+
+media <- soma / length(vetor.num); media; mean(vetor.num)
+
+# exemplo 4
+#install.packages("fBasics")
+library(fBasics)
+basicStats(vetor.num)
+
+# exemplo 5
+setwd("/home/bira/github/estudos_ciencia_de_dados/UFSCar/introducao_ambiente_RStudio_criacao_graficos_ggplot2")
+
+dados <- read.table("dados.txt", header=TRUE)
+
+# exemplo 6
+class(dados)
+
+str(dados)
+
+head(dados)
+
+tail(dados)
+
+summary(dados)
+
+head(dados$Idade)
+```
+
+
+### 1.2 Manipulando dados
+
+<https://youtu.be/phMNriJholM>
+
+
+### 1.3 Estruturas de fluxo
+
+<https://youtu.be/zsnD8QxTip0>
+
+### 1.4 Aspectos gerais sobre criação de funções no RStudio
+
+<https://youtu.be/mAFV-x2Zbys>
+
+### 1.5 Manipulando dados com o pacote dplyr
+
+<https://youtu.be/JPzw0cy5l9k>
+
+
+## Unidade 2
+
+### 2.1 Primeiros passos com o pacote ggplot2
+
+<https://youtu.be/XeKg3cHC1eE>
+
+### 2.2 Subplots, gráfico de barras, histogramas, polígono de frequência e boxplots
+
+<https://youtu.be/YEJH24TrXsY>
+
+
+## Questionário
+
+Questão 1: Uma organização de teste de produtos de consumo queria comparar o consumo de energia anual de cinco marcas diferentes de umidificador. Pelo fato de o consumo de energia depender do nível de umidade prevalecente, decidiu-se monitorar cada marca em quatro níveis diferentes de umidade, do moderado ao alto (portanto, dispondo em blocos o nível de umidade). Dentro de cada nível, as marcas foram atribuídas aleatoriamente aos cinco locais selecionados. As observações resultantes (kwh anuais) aparecem na tabela.
+
+### Tabela 1 - Dados do consumo de força
+
+| Marcas | Nível de Umidade   |                    |                    |                    |
+|        | 1                  | 2                  | 3                  | 4                  |
+|--------|--------------------|--------------------|--------------------|--------------------|
+| A      | 685                | 792                | 838                | 875                |
+| B      | 722                | 806                | 893                | 953                |
+| C      | 733                | 802                | 880                | 941                |
+| D      | 811                | 888                | 952                | 1005               |
+| E      | 828                | 920                | 978                | 1023               |
+
+Para ler os dados da Tabela 1 no RStudio, pode-se criar um arquivo do tipo txt com três colunas e nomeado por dados. A primeira coluna ser nomeada de marcas, a segunda de umidade e a terceira de consumo. Com base na Tabela 1, do arquivo dados e utilizando as funcionalidades do pacote dplyr, assinale a alternativa falsa.
+
+* Arquivo dados.txt
+
+```{shell}
+marcas;umidade;consumo
+A;1;685
+A;2;792
+A;3;838
+A;4;875
+B;1;722
+B;2;806
+B;3;893
+B;4;953
+C;1;733
+C;2;802
+C;3;880
+C;4;951
+D;1;811
+D;2;888
+D;3;952
+D;4;1005
+E;1;828
+E;2;920
+E;3;978
+E;4;1023
+```
+
+```{r}
+# carregar o pacote dplyr
+library(dplyr)
+
+# ler o arquivo dados.txt
+dados <- read.table("./questionario/dados.txt", header=TRUE, sep = ";")
+
+# visualizar od primeiros dados
+head(dados)
+
+# A média do consumo de cada nível de umidade pode ser fornecida pelos comandos
+media = dados %>% group_by(umidade) %>% summarise(dados_media = mean(consumo)); media
+
+# A média do consumo pode ser fornecida pelos comandos
+media = dados %>% summarise(dados_media = mean(consumo)); media
+
+# A média do consumo de cada marca de umidificador pode ser fornecida pelos comandos
+media = dados %>% group_by(marcas) %>% summarise(dados_media = mean(consumo)); media
+
+# A média do consumo de cada marca de umidificador pode ser fornecida pelos comandos
+media = dados %>% summarise(dados_media = mean(consumo)); media
+
+# A média, total, mínimo, máximo e desvio-padrão do consumo de cada marca de umidificador podem ser fornecidos pelos comandos
+res = dados %>% group_by(marcas) %>% summarise(media = mean(consumo),
+                                               total = sum(consumo),
+                                               min = min(consumo),
+                                               max = max(consumo),
+                                               dp = sd(consumo)); res
+```
+
+Questão 2: Qual dos scripts a seguir faz a seguinte tarefa: por meio de uma função, o programa recebe o registro de velocidade de um carro. 
+Se ele ultrapassar 80 km/h, mostra uma mensagem dizendo que ele foi multado. A multa vai custar R$7,00 por cada km/h acima do limite. 
+Se ele não ultrapassar 80 km/h, exibe a mensagem de que o limite de velocidade foi respeitado.
+
+
+```{r}
+radar=function(vel) {
+  if(vel > 80){
+    u = vel - 80
+    multa = 7 * u
+    return(list(Situação = "Multado", Valor_da_multa = multa))
+  }
+  if(vel >= 0 & vel <= 80)
+    print("Parabéns, você respeitou o limite de velocidade")
+}
+```
+
+Questão 3: Em relação às funções dos pacotes “dplyr”, assinale a alternativa correta:
+
+a) A função “arrange()” exibe informações do data.set, como quantidade de linhas e o tipo das variáveis.
+**b) A função “mutate()” permite criar uma nova coluna, com base em dados de outras colunas.**
+c) A função “select()” é utilizada para filtrar as linhas de um data.set.
+d) A função “summarise()” é utilizada para ordenar os dados de um data.set.
+e) A função “group_by()” faz operações de agregação de linhas limitadas a uma determinada subdivisão do conjunto de dados.
+
+Questão 4: A respeito das funções utilizadas na manipulação de dados na linguagem R, assinale a alternativa correta:
+
+a) Pacotes são conjuntos extras de funções do R que podem ser instalados. Quando se deseja utilizar, pela primeira vez, uma função que requer o uso de um determinado pacote basta executar o comando library.
+b) Todas as operações executadas na linguagem R com o pacote dplyr exigem a adição do operador %>% ao final da função.
+c) Em aplicações com data.frame, a notação [,] é utilizada para subdividir a tabela. Com uma vírgula separando qual a coluna (posição antes da vírgula) e a linha (posição após a vírgula) que se deseja selecionar.
+d) Para remover uma coluna de uma seleção, usa-se a função “select()” com o nome da coluna e o sinal de divisão.
+**e) O “dplyr” é um pacote que permite selecionar e manipular os data frames.**
+
+Questão 5: Acerca da linguagem de programação R e programa RStudio, assinale a alternativa correta:
+
+a) O RStudio possui uma interface gráfica que complica o uso da linguagem R na manipulação de dados, na criação de gráficos e nos cálculos estatísticos.
+**b) A linguagem R é uma linguagem de programação usada para análise estatística e produção de gráficos. Uma das suas vantagens é a linguagem acessível, fator que facilita a sua usabilidade.**
+c) A linguagem R é um software livre de ambiente de desenvolvimento integrado para RStudio.
+d) O RStudio é dividido em três janelas: “Editor de código”, “Console” e “Environment”.
+e) Ao executar o arquivo de instalação da linguagem R, não é permitido ao usuário escolher o idioma do instalador.
+
+Questão 6: Com relação ao pacote ggplot2, assinale a alternativa falsa:
+
+**a) Para se fazer um gráfico de barras com múltiplos fatores por meio do pacote ggplot2 é preciso somar a camada geom_col() à do ggplot.**
+b) Para se fazer um gráfico de barras com o ggplot2 é preciso somar a camada geom_bar() à do ggplot.
+c) Permite a criação mais sofisticada de gráficos no R e RStudio por meio da adição de camadas a um mesmo gráfico com o operador “+”.
+d) Para se fazer um histograma por meio do pacote ggplot2 é preciso somar a camada geom_freqpoly() à do ggplot.
+e) Para se fazer um diagrama de dispersão (ou gráfico de pontos) com o ggplot2 é preciso somar a camada geom_point() à do ggplot.
+
+Questão 7: Imagine a seguinte situação: você está trabalhando com análise de dados no R e surge uma dúvida sobre qualquer função ou parâmetro.
+
+A partir desse problema, assinale a alternativa que apresenta o procedimento para consultar a documentação da função:
+
+a) Utilizar o ponto de interrogação antes do nome da função. Em seguida, a documentação será aberta na aba “Files”.
+b) Inserir o ponto de exclamação antes do nome da função. Em seguida, a documentação será aberta na aba “Help”.
+c) Após a devida aplicação da função, a documentação será aberta na aba “Plots”.
+d) Inserir o ponto de interrogação antes do nome da função.
+e) Inserir o caractere asterisco antes do nome da função.
+
+Questão 8: Considere o arquivo de dados “Tab1modificado.txt” (apresentado em aula), que traz informações sobre a identificação do aluno (Id), do sexo, idade, peso, altura e renda (Baixa, Média e Alta) e número de faltas de 40 alunos de uma em uma universidade.
+
+Após carregar o conjunto de dados por meio do objeto dados e utilizando os recursos do pacote ggplot2, qual alternativa reproduz o gráfico a seguir.
+
+```{r}
+# carregar o pacote dplyr
+library(dplyr)
+library(ggplot2)
+
+# ler o arquivo dados.txt
+dados <- read.table("./questionario/Tab1modificado.txt", header=TRUE)
+
+y=dados$Altura
+
+k=round(sqrt(length(y))); k
+
+A=max(y)-min(y); A
+
+c=round(A/(k-1),2); c
+
+LI1=round(min(y) - c/2, 2); LI1
+
+LSk=round(max(y) + c/2, 2); LSk
+
+ggplot(data=dados, aes(Altura)) +
+
+  geom_histogram(aes(y =..count../sum(..count..)),
+
+                 breaks=seq(LI1, LSk, by = c),
+
+                 col="red",
+
+                 fill="blue",
+
+                 alpha=.2) +
+
+  labs(title = "Distribuição da Altura (m)",
+
+       x = "Altura",
+
+       y = "Proporção (%)") +
+
+  scale_x_continuous(name = "Altura",
+
+                     breaks = seq(LI1, LSk, by = c)) +
+
+  scale_y_continuous(labels = scales::percent_format())
+```
+
+Questão 9: O RStudio possui diversas abas com diferentes funcionalidades. Assinale a alternativa que relaciona a descrição mais adequada para a atividade citada:
+
+**a) A janela que exibe os objetos armazenados na memória é a “Environment”.**
+b) “Environment” é a janela que exibe o resultado do que é executado no “Editor de códigos”.
+c) A aba “Packages” é o local onde os gráficos gerados são exibidos.
+d) A aba “Plots” exibe a documentação de uma determinada função ou pacote quando a função “help()” é executada.
+e) A aba “Files” exibe os gráficos do RStudio.
+
+Questão 10: Sobre a janela “Console”, assinale a alternativa que descreve as suas funcionalidades:
+
+a) Exibe objetos que estão carregados na memória.
+b) Permite instalar, atualizar e pesquisar os pacotes.
+c) Exibe a estrutura de arquivos do projeto, além de remover ou salvar os objetos.
+**d) Expressa o resultado das ações realizadas na janela “Editor de códigos”.**
+e) É o local para escrever, salvar e editar o código.
+
+
+## Referências
+
+* ALBERT, J. Bayesian Computation with R, Springer., 2007.
+
+* CLAUDE, J. Morphometrics with R, Springer, 2008.
+
+* COOK, D.; SWAYNE, D. F. Interactive and Dynamic Graphics for Data Analysis with R, Springer, 2007.
+
+* CRAWLEY, M. J. The R Book, John Wiley & Sons Ltd, 2007.
+
+* HENRY, M.; STEVENS, H. A Primer of Ecology with R, Springer, 2009.
+
+* OLIVEIRA, P. F.; GUERRA, S.; MCDONNELL, R. Ciência de Dados com R: Introdução. Brasília: Editora IBPAD, 2018.
+
+* R CORE TEAM (2019). R: A language and environment for statistical computing, R Foundation for Statistical Computing, Vienna, Austria. Disponível em <https://www.R-project.org/>;. Acesso em: 18 nov. 2022.
+
+* ROBERT, C. P.; CASELLA, G. Introducing Monte Carlo Methods with R, Springer, 2010.
+
+* SOETAERT, K.; CASH, J.; MAZZIA, F. Solving differential equation in R. Springer, 2012.
+
+* TATTAR, P. N.; RAMAIAH, S.; MANJUNATH, B. G. A course in Statistics with R, John Wiley & Sons, 2016.
+
+* VANCE A. Data Analysts Captivated by R's Power. Disponível em: <http://www.nytimes.com/2009/01/07/technology/business-computing/07program.html?_r=0>;. Acesso em: 18 nov. 2022.
+
+* VERZANI, J. Getting Started with RStudio, O'Reilly Media, Inc., 2011.
+
+* WICKHAM, H. ggplot2: Elegant Graphics for Data Analysis, Springer, 2009.
