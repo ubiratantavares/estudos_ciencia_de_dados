@@ -1,0 +1,1120 @@
+---
+title: "Introdução ao Programa R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descrição do Curso
+
+Esse curso apresentará o programa R, como linguagem de programação, seguido dos 
+principais tipos de objetos (vetores, matrizes, e tabelas), criação de funções,
+elaboração de gráficos e aplicações básicas em estatística.
+
+## Objetivos
+
+* Entender o funcionamento do programa bem como suas principais aplicabilidades
+em problemas variados.
+
+* Compreender a necessidade do uso e reuso desse programa para que potenciais 
+usuários colaboradores continuem com o desenvolvimento do programa.
+
+## Unidade 1 - Introdução ao programa R
+
+### 1.1 Dominando o R: Instalação, Fundamentos e Primeiros Passos com R e RStudio
+
+#### 1.1.1 Introdução à Linguagem R
+
+Olá, pessoal! Seja bem-vindo a esta jornada de aprendizado com a linguagem R. 
+Quem conduz essa trilha é Laura, e juntos exploraremos como utilizar esse 
+poderoso software para manipulação, análise e visualização de dados. 
+Considerado atualmente uma das melhores ferramentas para tais finalidades, 
+o R será nosso aliado neste curso, desenvolvido pelos professores 
+Gilberto Rodrigues Niska, Josiane Rodrigues e Juliano Bertolini.
+
+Em um mundo onde os computadores fazem parte das mais variadas atividades do 
+cotidiano e do ambiente profissional, é essencial possuir um conjunto mínimo 
+de habilidades para utilizá-los de forma eficaz. Nesse contexto, o 
+R destaca-se como uma linguagem de fácil aprendizagem, especialmente nas 
+áreas de estatística, análise de dados e ciência de dados.
+
+#### 1.1.2 Crescimento e Versatilidade do R
+
+A popularidade do R tem crescido não apenas na estatística, mas também em 
+áreas como matemática, morfometria, ecologia, entre outras. 
+Sua versatilidade permite melhor visualização dos dados e o torna útil em 
+tópicos avançados como estatística Bayesiana, simulação computacional e 
+ensino de estatística. Ao longo deste curso, veremos como o R pode ajudar a 
+resolver problemas práticos por meio de seus recursos computacionais.
+
+#### 1.1.3 Estrutura do Curso
+
+Este curso abordará:
+
+* **Instalação do R e do RStudio**
+* **Conceitos básicos de programação**
+* **Estruturas de repetição**
+* **Objetos fundamentais** como vetores, matrizes e tabelas
+* **Funções**
+* **Criação de gráficos** (2D e 3D)
+* **Aplicações estatísticas básicas**
+
+O R foi criado em 1996 por Ross Ihaka e Robert Gentleman, da Universidade de 
+Auckland, na Nova Zelândia. Inspirado no software S+, 
+ele surgiu como uma alternativa gratuita aos softwares pagos. 
+Desde então, tem crescido com contribuições da comunidade global.
+
+#### 1.1.4 A Importância do R no Mercado
+
+Dados dos anos de 2013 e 2014 indicam que o R ocupou o segundo lugar entre as 
+linguagens de programação mais populares, ficando atrás apenas do Python. 
+Outro fator importante é o crescimento no número de pacotes desenvolvidos 
+pela comunidade para análises diversas.
+
+Empresas como **Samsung**, **Janssen** e até mesmo a **NASA** utilizam o R 
+em suas operações. Isso demonstra como o domínio dessa linguagem pode ser um 
+grande diferencial competitivo para profissionais em busca de oportunidades 
+em grandes organizações multinacionais.
+
+#### 1.1.5 Instalação do R
+
+Para iniciar, é preciso instalar o R no seu computador. Siga o passo a passo:
+
+1. Acesse o site oficial: [R Project](https://www.r-project.org/)
+2. Clique no menu **CRAN**, no canto superior esquerdo.
+3. Escolha um espelho (mirror) no Brasil, como o da **Fundação Oswaldo Cruz**.
+4. Selecione seu sistema operacional (Windows, macOS ou Linux).
+5. Clique na opção **base** para fazer o download da versão mais recente (ex: 4.2.1).
+6. Após o download, execute o instalador e permita a instalação do programa.
+
+#### 1.1.6 Instalando o RStudio
+
+Apesar de o R ser funcional, sua interface pode ser pouco amigável para 
+iniciantes. Por isso, recomendamos instalar também o **RStudio**, um ambiente 
+de desenvolvimento integrado (IDE) que proporciona uma experiência mais 
+organizada e eficiente.
+
+Passos para instalar o RStudio:
+
+1. Acesse: [rstudio.com](https://www.rstudio.com/)
+2. No menu superior direito, clique em **Products** > **RStudio**.
+3. Escolha a opção gratuita: **RStudio Desktop**.
+4. Clique em **Download**.
+5. Escolha seu sistema operacional (Windows, macOS, Ubuntu, Fedora, OpenSUSE).
+6. Baixe e execute o instalador.
+
+#### 1.1.7 Conhecendo a Interface do RStudio
+
+O RStudio se diferencia por sua organização em **quatro painéis principais**:
+
+1. **Editor de Código** (superior esquerdo): local onde os scripts são escritos 
+e editados. Scripts são sequências de comandos que o R executa.
+
+2. **Environment e History** (superior direito):
+
+   * *Environment*: exibe os objetos criados na sessão.
+   * *History*: mostra o histórico de comandos utilizados.
+
+3. **Console** (inferior esquerdo): exibe os resultados dos comandos.
+
+4. **Files, Plots, Packages, Help, Viewer** (inferior direito): traz diversas 
+funcionalidades úteis que serão exploradas ao longo do curso.
+
+Esses painéis exclusivos do RStudio tornam o aprendizado mais visual e eficiente.
+
+
+#### 1.1.8 Conclusão
+
+Essa foi nossa aula introdutória, cobrindo a instalação do R e do RStudio e 
+um panorama geral do que será abordado no curso. Agora que já temos nosso 
+ambiente de trabalho pronto, estamos preparados para mergulhar no universo 
+da programação com R. Nos vemos na próxima aula, onde começaremos a explorar os 
+primeiros comandos dessa poderosa linguagem.
+
+### 1.2 Primeiros Passos com R: Cálculos Simples, Ajuda com Funções e Criação de Objetos
+
+#### 1.2.1 Introdução: Explorando o Básico no R
+
+Olá, pessoal! Tudo certo? Depois de aprendermos como instalar o **R** e o 
+**RStudio**, chegou o momento de colocar a mão na massa. Nesta etapa do curso, 
+vamos explorar os **primeiros usos no R**, começando por tarefas básicas 
+como realizar cálculos matemáticos, buscar ajuda sobre funções e armazenar 
+resultados em objetos. Esses são passos fundamentais para quem está dando os 
+primeiros cliques no mundo da programação com R.
+
+#### 1.2.2 Realizando Cálculos no Console do R
+
+O **console** — também conhecido como **prompt** — é o espaço onde digitamos 
+comandos. Ao abrir o R, você verá o cursor piscando, aguardando sua instrução. 
+Vamos começar com um exemplo simples: calcular quanto é **10 dividido por 5**.
+
+Para isso, digitamos:
+
+```{r}
+10 / 5
+```
+
+E então pressionamos **Enter**.
+
+O resultado exibido será `2`. Observe que:
+
+* O console retorna o valor do cálculo abaixo do comando digitado.
+* O **History** (histórico) registra esse comando.
+* O **Environment** continua vazio, pois não foi criado nenhum objeto — 
+apenas foi feito um cálculo momentâneo.
+
+#### 1.2.3 Utilizando Funções Simples: Raiz Quadrada
+
+Vamos testar agora uma função incorporada no R: o cálculo da **raiz quadrada** 
+de um número. Para isso, usamos a função `sqrt()`.
+
+Digite:
+
+```{r}
+sqrt(9)
+```
+
+E pressione Enter. O resultado será `3`.
+
+Mais uma vez, o resultado é exibido no console, o histórico foi atualizado com 
+o novo comando, mas o ambiente segue vazio, já que ainda não estamos armazenando valores em objetos.
+
+#### 1.2.4  Como Obter Ajuda no R
+
+Se você não souber como usar uma função, como a `sqrt()`, o R oferece duas 
+formas práticas de acessar informações sobre ela:
+
+* Usando o ponto de interrogação:
+
+```{r}
+?sqrt
+```
+
+Esse comando abrirá, no **Painel 4** (canto inferior direito do RStudio), a 
+documentação da função, incluindo:
+
+* Nome e descrição da função
+* Sintaxe e argumentos esperados
+* Detalhes de funcionamento
+* Referências
+* Funções relacionadas
+* Exemplos de uso
+
+* Usando a função `help()`:
+
+```{r}
+help(sqrt)
+```
+
+Esse comando tem o mesmo efeito: abrirá a documentação da função `sqrt()` 
+para consulta.
+
+#### 1.2.5 Criando e Utilizando Objetos no R
+
+Realizar cálculos é ótimo, mas e se quisermos **guardar os resultados** para 
+reutilizá-los depois? É aí que entram os **objetos**. Criar objetos no R é 
+como guardar um valor dentro de uma caixa com nome. 
+Sempre que você chamar essa “caixa”, terá acesso ao conteúdo guardado.
+
+Regras para criar objetos:
+
+* O nome pode ser uma letra ou palavra.
+* O R **diferencia letras maiúsculas de minúsculas**. 
+Portanto, `x` e `X` são objetos diferentes.
+
+Exemplo: Criando um vetor numérico
+
+Vamos criar um objeto chamado `x` que contém uma amostra de cinco números:
+`2`, `3`, `4`, `5.1` e `3.2`. 
+
+Lembre-se: no R, **usamos ponto (.) como separador decimal**, e 
+**vírgula (,) para separar os elementos**.
+
+O comando será:
+
+```{r}
+x <- c(2, 3, 4, 5.1, 3.2)
+```
+
+Ou:
+
+```{r}
+x = c(2, 3, 4, 5.1, 3.2)
+```
+
+Após pressionar Enter, o **Environment** (ambiente) deixará de estar vazio. 
+Ele mostrará:
+
+* Um objeto chamado `x`
+* Tipo: **numérico**
+* Tamanho: **5 elementos**
+* Valores armazenados
+
+Para visualizar o conteúdo de `x`, digite:
+
+```{r}
+x
+```
+
+Se você tentar digitar `X` (com maiúscula), não obterá o mesmo resultado, 
+pois o objeto foi criado com letra minúscula.
+
+#### 1.2.6 Conclusão
+
+Nesta aula, aprendemos a:
+
+* Executar **cálculos simples** no console do R
+* Utilizar a função `sqrt()` e entender seu retorno
+* Obter **ajuda sobre funções** com `?` e `help()`
+* Criar **objetos** para armazenar dados
+
+Esses fundamentos são essenciais para continuar avançando na programação com R. 
+No próximo encontro, vamos explorar a **criação de scripts**, 
+para automatizar tarefas e organizar melhor os nossos códigos.
+
+### 1.3 Automatizando seu Código: Como Criar e Utilizar Scripts no R com Eficiência
+
+#### 1.3.1 Introdução: De Comandos Avulsos a Rotinas Automatizadas
+
+Olá a todos! Se na última aula exploramos os **cálculos simples** e a 
+**criação de objetos** no R, agora vamos dar um passo essencial na jornada 
+da programação: aprender a **criar e utilizar scripts**. 
+Essa prática transforma a experiência de codificação, tornando-a mais 
+organizada, reutilizável e eficiente.
+
+#### 1.3.2 Por Que Utilizar Scripts no R?
+
+Até aqui, todos os comandos foram digitados diretamente no **console** do R. 
+Embora seja simples para tarefas pontuais, repetir comandos manualmente não é
+prático — especialmente quando o volume de código aumenta. Além disso, fica 
+fácil se perder em meio a linhas soltas e resultados isolados.
+
+Para resolver esse problema, usamos **scripts**, também chamados de **rotinas**. 
+Com eles, podemos agrupar códigos, documentar nossos processos e reaproveitá-los
+sempre que necessário, sem retrabalho.
+
+#### 1.3.3 Acessando o Editor de Códigos
+
+Para criar scripts no **RStudio**, usamos a **tela 1**, o **editor de códigos**. 
+Para acessá-lo, basta clicar no ícone correspondente na interface do RStudio. 
+Assim que estiver aberto, o editor estará pronto para receber os comandos.
+
+Antes de começarmos a escrever código, é **fundamental escolher um diretório de trabalho** 
+— o famoso *working directory*. Essa etapa é essencial tanto para armazenar 
+quanto para importar arquivos corretamente, evitando erros comuns relacionados 
+a caminhos de pastas.
+
+#### 1.3.4 Definindo o Diretório de Trabalho
+
+Para configurar seu diretório de trabalho, siga este passo a passo:
+
+1. No menu superior, clique em **Session**.
+2. Selecione **Set Working Directory**.
+3. Clique em **Choose Directory**.
+4. Escolha o local em seu computador onde deseja armazenar seus arquivos.
+   No exemplo, criamos uma nova pasta em "Documentos" chamada `RotinasRAluno`.
+5. Clique em **Open**.
+
+O console exibirá uma mensagem confirmando a mudança de diretório, garantindo 
+que todos os arquivos serão armazenados e lidos a partir dessa pasta.
+
+#### 1.3.5 Criando um Novo Script no R
+
+Agora que o diretório está definido, vamos criar nosso primeiro script:
+
+1. Vá até a aba **Files**.
+2. Selecione **New File** > **R Script**.
+
+Uma nova aba será aberta no editor de códigos. Nesse espaço, você poderá 
+escrever todos os comandos que desejar, com a vantagem de poder salvá-los e 
+reutilizá-los.
+
+#### 1.3.6 Escrevendo e Executando Comandos
+
+Vamos aproveitar os comandos da aula anterior (também disponíveis no material 
+“Insight 38”) e inseri-los no editor. Você pode digitá-los manualmente ou 
+copiá-los e colá-los no script.
+
+Para **executar os comandos** diretamente do editor:
+
+* Posicione o cursor sobre a linha desejada.
+* Pressione **Ctrl + Enter** ou clique em **Run**.
+
+Repita o processo para todas as linhas do script.
+
+**Dica importante:** ao escrever `#` antes de um texto, o R entende que se 
+trata de um **comentário**. O texto aparece em **verde** e não é interpretado 
+como código. Isso é excelente para documentar e explicar o que cada trecho do 
+script faz.
+
+Além disso, para cada linha executada no editor (tela 1), o comando aparece 
+automaticamente no **console** (tela 3), com o resultado exibido logo abaixo.
+
+#### 1.3.7 Salvando seu Script
+
+Para salvar seu trabalho:
+
+1. Clique no ícone azul de salvar.
+2. Dê um nome ao arquivo — por exemplo, `RotinaAula1`.
+3. O script será salvo com extensão `.R` (como `RotinaAula1.R`).
+
+Esse arquivo poderá ser **compartilhado, transferido entre computadores, editado e reexecutado** 
+sempre que necessário.
+
+#### 1.3.8 Abrindo e Reexecutando um Script
+
+Vamos testar o processo de abertura do script:
+
+1. Feche a aba do script atual.
+2. Vá em **File** > **Open File**.
+3. Navegue até o local onde o arquivo foi salvo (no exemplo: “Documentos” > `RotinaAula1.R`).
+4. Selecione o script e clique em **Open**.
+5. Para reexecutar os comandos, use novamente **Ctrl + Enter** ou o botão **Run**.
+
+O resultado será exatamente o mesmo da execução anterior, mostrando o poder de **reutilização** dos scripts.
+
+#### 1.3.9 Conclusão
+
+Nesta aula, aprendemos a:
+
+* **Definir um diretório de trabalho**
+* **Criar e editar scripts**
+* **Executar comandos diretamente do editor**
+* **Adicionar comentários no código**
+* **Salvar e reabrir scripts com facilidade**
+
+A criação de scripts marca uma transição importante no uso do R — de um uso 
+pontual para uma prática mais estruturada e escalável. Nos vemos na próxima 
+aula, onde abordaremos as **operações básicas no R**. 
+
+
+## Unidade 2 - Operações básicas de programação
+
+### **2.1 Introdução à Programação em R: Módulo da Divisão, Condicionais e Funções**
+
+A programação é uma habilidade essencial em diversas áreas do conhecimento, e compreender seus conceitos básicos é o primeiro passo para utilizá-la de forma eficiente. Neste artigo, apresentaremos de forma didática os principais pontos abordados na aula introdutória sobre programação em R, incluindo o conceito de módulo da divisão, estruturas condicionais com *if-else* e o uso de funções para otimizar o código.
+
+## **O que é o Módulo da Divisão?**
+
+O módulo da divisão é uma operação matemática que retorna o **resto** da divisão entre dois números. Matematicamente, expressamos essa operação como:
+
+> **y = w mod x**
+
+Nesse caso, **y** representa o módulo (ou resto) da divisão de **w** por **x**.
+
+Em R, o operador utilizado para essa operação é o símbolo de porcentagem duplicado: `%%`. Essa operação é muito útil, por exemplo, para identificar se um número é **par** ou **ímpar**, pois um número é par quando o resto da sua divisão por 2 é igual a zero.
+
+## **Exemplo Prático: Calculando o Módulo da Divisão no R**
+
+### **Exemplo 1: 10 dividido por 3**
+
+Para realizar esse cálculo no R, criamos dois objetos:
+
+```{r}
+num1 <- 10
+num2 <- 3
+```
+
+Realizamos a divisão normalmente:
+
+```{r}
+num1 / num2
+```
+
+**Resultado:** `3.333333`
+
+Agora, aplicamos o operador de módulo:
+
+```{r}
+num1 %% num2
+```
+
+**Resultado:** `1`
+
+Ou seja, o resto da divisão de 10 por 3 é igual a 1.
+
+## **Utilizando Funções para Reaproveitar Código**
+
+Também podemos automatizar esse processo criando uma **função**, o que torna o código mais eficiente e reaproveitável. No exemplo da aula, foi criada a função `modm`:
+
+```{r}
+modm <- function(num1, num2) {
+  cat("Divisão:", num1 / num2, "\n")
+  cat("Resto:", num1 %% num2, "\n")
+}
+```
+
+Para utilizá-la, basta chamar a função passando os valores desejados:
+
+```{r}
+modm(10, 3)
+```
+
+**Saída:**
+
+```
+Divisão: 3.333333 
+Resto: 1 
+```
+
+Vale lembrar que a ordem dos argumentos altera o resultado. Por exemplo:
+
+```{r}
+modm(3, 10)
+```
+
+**Saída:**
+
+Divisão: 0.3 
+Resto: 3 
+
+Outro exemplo prático seria:
+
+```{r}
+modm(9, 3)
+```
+
+**Saída:**
+
+Divisão: 3 
+Resto: 0 
+
+Neste caso, como o resto é zero, a divisão é exata.
+
+## **Identificando Números Pares e Ímpares com Condicionais**
+
+Além de calcular o módulo, podemos utilizar **estruturas condicionais** para identificar automaticamente se um número é par ou ímpar.
+
+### **Exemplo 2: Verificando Paridade de um Número**
+
+Primeiro, realizamos o cálculo manualmente:
+
+```{r}
+num1 <- 15
+num2 <- 2
+num1 / num2
+num1 %% num2
+```
+
+Como o resto é igual a 1, sabemos que o número é ímpar.
+
+### **Automatizando com If-Else**
+
+Para automatizar esse processo:
+
+```{r}
+num1 <- 16
+
+if (num1 %% 2 == 0) {
+  print("Número par")
+} else {
+  print("Número ímpar")
+}
+```
+
+**Saída:**
+
+[1] "Número par"
+
+Esse código verifica o resto da divisão de `num1` por 2. Se o resto for zero, o número é par; caso contrário, é ímpar.
+
+## **Criando Função para Verificar Paridade**
+
+Podemos ainda transformar esse código em uma função:
+
+```{r}
+modmpar <- function(num1) {
+  if (num1 %% 2 == 0) {
+    print("Número par")
+  } else {
+    print("Número ímpar")
+  }
+}
+```
+
+Chamando a função:
+
+```{r}
+modmpar(16)
+```
+
+**Saída:**
+
+[1] "Número par"
+
+## **Conclusão**
+
+Nesta aula introdutória, aprendemos conceitos fundamentais de programação no R:
+
+✅ O que é o **módulo da divisão** e como aplicá-lo;
+
+✅ A importância de **funções** para reutilizar código;
+
+✅ Como utilizar **estruturas condicionais** (*if-else*) para criar programas que tomam decisões automaticamente.
+
+Esses conceitos formam a base para desenvolver códigos mais complexos e eficientes. Na próxima aula, continuaremos explorando recursos essenciais da linguagem R.
+
+### **2.2 Estruturas Condicionais em R: Guia Prático e Exemplos Detalhados**
+
+As estruturas condicionais são fundamentais para criar programas que tomam decisões com base em comparações lógicas. Neste artigo, apresentamos um guia completo e didático sobre o uso dessas estruturas na linguagem R, incluindo o uso de operadores condicionais, comandos `if`, `else`, `ifelse` e `else if`, sempre acompanhados de exemplos práticos e explicações claras.
+
+## **O que são Estruturas Condicionais?**
+
+Estruturas condicionais são responsáveis por verificar se determinada afirmação ou comparação entre valores é **verdadeira** ou **falsa**, e a partir disso, executar comandos específicos. Elas permitem que o programa siga caminhos diferentes conforme os dados de entrada, sendo indispensáveis na construção de programas dinâmicos.
+
+Na tabela a seguir, destacamos alguns dos principais **operadores condicionais** utilizados em R:
+
+| Operador | Significado    |
+| -------- | -------------- |
+| `==`     | Igualdade      |
+| `<`      | Menor que      |
+| `>`      | Maior que      |
+| `<=`     | Menor ou igual |
+| `>=`     | Maior ou igual |
+| `!=`     | Diferente de   |
+
+## **Estrutura Condicional Simples: O Comando `if`**
+
+A estrutura básica do `if` no R é:
+
+```{r}
+if (condição) {
+  comando
+}
+```
+
+### **Exemplo 1: Verificando se um Número é Menor que 10**
+
+Criamos um objeto chamado `num` com valor 8:
+
+```{r}
+num <- 8
+
+if (num < 10) {
+  print("O número é menor que 10")
+}
+```
+
+**Saída:**
+
+```
+[1] "O número é menor que 10"
+```
+
+Também poderíamos apenas executar:
+
+```{r}
+num < 10
+```
+
+Nesse caso, o console retorna `TRUE` ou `FALSE`, indicando se a condição é satisfeita.
+
+### **Transformando em Função**
+
+Criamos uma função para reaproveitar o código:
+
+```{r}
+n10 <- function(num) {
+  if (num < 10) {
+    print("O número é menor que 10")
+  }
+}
+```
+
+**Testando a função:**
+
+```{r}
+n10(8)
+```
+
+**Saída:**
+
+```
+[1] "O número é menor que 10"
+```
+
+Se inserirmos um número igual ou maior que 10, nada será impresso, pois a função só trata o caso em que o número é menor que 10.
+
+## **Exemplo Prático: Verificando se um Carro é Novo**
+
+O conceito pode ser aplicado em outros contextos. Suponha que queremos identificar se um carro é considerado novo, sendo novo aquele com menos de 3 anos de uso.
+
+### **Exemplo 2:**
+
+```{r}
+tempo <- 2
+
+if (tempo < 3) {
+  print("O carro é novo")
+}
+```
+
+**Transformando em função:**
+
+```{r}
+carroNovo <- function(tempo) {
+  if (tempo < 3) {
+    print("O carro é novo")
+  }
+}
+```
+
+**Testes:**
+
+```r
+carroNovo(2)  # Saída: O carro é novo
+carroNovo(8)  # Sem saída, pois o carro não atende à condição
+```
+
+## **Estrutura Condicional Composta: `if` e `else`**
+
+Quando queremos executar um comando caso a condição seja **falsa**, usamos o `else`:
+
+```{r}
+if (condição) {
+  comando_se_verdadeiro
+} else {
+  comando_se_falso
+}
+```
+
+### **Exemplo 3: Verificando se um Número é Menor que 10 ou no Mínimo 10**
+
+```{r}
+num <- 8
+
+if (num < 10) {
+  print("O número é menor que 10")
+} else {
+  print("O número é no mínimo 10")
+}
+```
+
+**Transformando em função:**
+
+```{r}
+n10 <- function(num) {
+  if (num < 10) {
+    print("O número é menor que 10")
+  } else {
+    print("O número é no mínimo 10")
+  }
+}
+```
+
+**Testes:**
+
+```{r}
+n10(8)   # Menor que 10
+n10(12)  # No mínimo 10
+```
+
+## **Exemplo Prático: Carro Novo ou Velho**
+
+Utilizando `if` e `else`:
+
+```{r}
+tempo <- 8
+
+if (tempo < 3) {
+  print("O carro é novo")
+} else {
+  print("O carro é velho")
+}
+```
+
+### **Função com Entrada do Usuário**
+
+Também é possível perguntar ao usuário:
+
+```{r}
+tempo <- as.numeric(readline(prompt = "Quantos anos tem o carro? "))
+
+if (tempo < 3) {
+  print("O carro é novo")
+} else {
+  print("O carro é velho")
+}
+```
+
+## **Estrutura Simplificada: O Comando `ifelse`**
+
+O `ifelse` torna o código mais compacto:
+
+```{r}
+tempo <- 5
+resultado <- ifelse(tempo <= 3, "O carro é novo", "O carro é velho")
+print(resultado)
+```
+
+Também podemos incluir essa lógica em uma função:
+
+```{r}
+carroNovoOuVelho <- function(tempo) {
+  print(ifelse(tempo <= 3, "O carro é novo", "O carro é velho"))
+}
+```
+
+**Testes:**
+
+```{r}
+carroNovoOuVelho(2)  # Novo
+carroNovoOuVelho(5)  # Velho
+```
+
+## **Exemplo Matemático: Cálculo da Média com Condicional**
+
+Criamos uma função que calcula a média entre duas notas e exibe a mensagem adequada:
+
+```{r}
+mediaAluno <- function(n1, n2) {
+  media <- (n1 + n2) / 2
+  print(media)
+  
+  if (media >= 6) {
+    print("Parabéns, você foi aprovado!")
+  } else {
+    print("Estude mais, você foi reprovado.")
+  }
+}
+```
+
+**Testes:**
+
+```{r}
+mediaAluno(5, 8)  # Média 6.5, aprovado
+mediaAluno(3, 8)  # Média 5.5, reprovado
+```
+
+## **`else if`: Lidando com Múltiplas Condições**
+
+Quando há mais de duas possibilidades, usamos o `else if`:
+
+### **Exemplo 4:**
+
+```{r}
+num <- 10
+
+if (num < 10) {
+  print("Menor que 10")
+} else if (num == 10) {
+  print("Igual a 10")
+} else {
+  print("Maior que 10")
+}
+```
+
+### **Função com `else if`:**
+
+```{r}
+verificaNumero <- function(num) {
+  if (num < 10) {
+    print("Menor que 10")
+  } else if (num == 10) {
+    print("Igual a 10")
+  } else {
+    print("Maior que 10")
+  }
+}
+```
+
+**Testes:**
+
+```{r}
+verificaNumero(8)   # Menor que 10
+verificaNumero(10)  # Igual a 10
+verificaNumero(15)  # Maior que 10
+```
+
+## **Conclusão**
+
+Nesta aula, aprofundamos o entendimento das **estruturas condicionais** em R, explorando:
+
+✅ Operadores de comparação;
+
+✅ Estruturas simples com `if`;
+
+✅ Estruturas compostas com `if` e `else`;
+
+✅ O uso eficiente do `ifelse`;
+
+✅ A construção de condições mais elaboradas com `else if`;
+
+✅ Aplicações práticas, como verificação de idade de um carro ou cálculo de médias escolares.
+
+O domínio dessas estruturas é essencial para construir programas mais robustos e capazes de tomar decisões de forma automática. Continue acompanhando as próximas aulas para avançar ainda mais no aprendizado da linguagem R.
+
+### **2.3 # Entendendo Estruturas de Repetição no R: FOR e WHILE**
+
+As estruturas de repetição são fundamentais na construção de programas eficientes e automatizados, especialmente quando lidamos com grandes volumes de dados. Nesta aula, vamos explorar de forma detalhada o funcionamento e a aplicação dos comandos **FOR** e **WHILE** na linguagem **R**, destacando exemplos práticos para fixar o conteúdo.
+
+#### 2.3.1 Introdução às Estruturas de Repetição
+
+O principal objetivo das estruturas de repetição é permitir que um determinado bloco de comandos seja executado diversas vezes, até que uma condição específica seja satisfeita. Essas estruturas, também chamadas de **laços de repetição** ou **loops**, são amplamente utilizadas para processar coleções de dados, como linhas de um arquivo ou registros de um banco de dados.
+
+As duas estruturas de repetição mais comuns em R são o **FOR** e o **WHILE**.
+
+#### 2.3.2 A Estrutura FOR
+
+**Conceito e Sintaxe**
+
+O **FOR** é, sem dúvida, a estrutura de repetição mais utilizada no R, pois é altamente versátil, sendo capaz de percorrer tanto sequências estáticas quanto sequências geradas dinamicamente por iteradores.
+
+**Iteradores** são estruturas que permitem o acesso sequencial a uma coleção de elementos.
+
+A sintaxe básica do FOR em R é:
+
+```r
+for (variável in sequência) {
+  bloco_de_comandos
+}
+```
+
+* **variável**: É a referência que receberá, a cada iteração, um valor diferente da sequência.
+* **sequência**: Define os valores sobre os quais o laço irá iterar.
+* **bloco\_de\_comandos**: São as operações que serão executadas em cada iteração.
+
+**Exemplo Prático**
+
+Vamos entender o uso do FOR através de um exemplo simples: exibir na tela a sequência de números de 1 a 5.
+
+```r
+for (i in 1:5) {
+  print(i)
+}
+```
+
+Nesse caso:
+
+* A variável **i** assume, a cada iteração, um valor da sequência de 1 a 5.
+* O comando `print(i)` exibe o valor atual de **i**.
+* Esse processo se repete até que todos os valores da sequência sejam percorridos.
+
+O resultado será:
+
+```
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+```
+
+**Usando a Função `seq()` no FOR**
+
+A função **`seq()`** permite maior flexibilidade na criação de sequências numéricas.
+
+Por exemplo:
+
+```r
+for (x in seq(1, 5, 1)) {
+  print(x)
+}
+print("fim")
+```
+
+Neste caso:
+
+* A função `seq(1, 5, 1)` gera uma sequência de 1 a 5 com passos de 1 em 1.
+* Após o loop, a palavra **"fim"** é exibida para indicar o término da repetição.
+
+A função `seq()` é extremamente útil, pois possibilita criar sequências personalizadas, controlando o início, o fim e o passo entre os elementos.
+
+**Explorando a Função `seq()`**
+
+A seguir, apresentamos alguns exemplos adicionais de uso da função `seq()` e comandos complementares:
+
+```r
+seq(1, 5)
+```
+
+Gera a sequência de 1 a 5.
+
+```r
+length(seq(1, 5))
+```
+
+Informa o comprimento da sequência, que é 5.
+
+```r
+seq(1, 5, by = 1)
+```
+
+Gera a mesma sequência de 1 a 5, informando explicitamente o passo.
+
+**Atenção à Visualização no Console**
+
+Quando geramos sequências muito longas, o console do R pode numerar as posições de cada elemento para facilitar a visualização. Por exemplo:
+
+```r
+seq(1, 2125)
+```
+
+Nesse caso, o console exibe os números em colunas e informa a posição inicial de cada linha entre colchetes, como:
+
+```
+ [1]    1    2    3 ... 
+[12] 2125
+```
+
+Essa numeração é apenas visual e não interfere no código ou no funcionamento do programa.
+
+### **Sequência Padrão sem Especificar o Passo**
+
+Quando utilizamos `seq(17)` sem especificar outros parâmetros, o R entende que queremos uma sequência de 1 até 17, com passo de 1 em 1.
+
+#### 2.3.3 A Estrutura WHILE
+
+**Conceito e Sintaxe**
+
+Diferentemente do FOR, a estrutura **WHILE** executa um bloco de comandos enquanto uma condição for verdadeira.
+
+A sintaxe é:
+
+```r
+while (condição) {
+  bloco_de_comandos
+}
+```
+
+Quando a condição se torna falsa, o loop é interrompido.
+
+**Exemplo Prático**
+
+Criando uma sequência de 1 a 10 com o WHILE:
+
+```r
+x <- 1
+while (x < 11) {
+  print(x)
+  x <- x + 1
+}
+```
+
+Explicando o código:
+
+* Inicializamos a variável **x** com o valor 1.
+* Enquanto **x** for menor que 11, o valor é impresso e incrementado em 1.
+* O loop termina quando **x** atinge o valor 11.
+
+**Função com WHILE**
+
+Também podemos encapsular a lógica do WHILE dentro de uma função:
+
+```r
+minhaSequencia <- function(num1, num2, pula) {
+  while (num1 < num2) {
+    print(num1)
+    num1 <- num1 + pula
+  }
+  print("fim")
+}
+```
+
+Chamando a função:
+
+```r
+minhaSequencia(1, 11, 1)
+```
+
+O resultado será a exibição dos números de 1 a 10, seguidos da palavra **"fim"**.
+
+#### 2.3.5 Conclusão
+
+Nesta aula, aprendemos sobre duas estruturas fundamentais para automatizar tarefas repetitivas no R:
+
+✅ **FOR**: Ideal para laços com número de repetições previamente determinado.
+
+✅ **WHILE**: Recomendado para situações em que o término depende do resultado de uma condição.
+
+Esses conceitos são essenciais para trabalhar com manipulação de dados, automação de tarefas e construção de algoritmos eficientes no R.
+
+Na próxima aula, avançaremos no estudo dos principais objetos utilizados na linguagem R. Até lá!
+
+
+```{r}
+for (i in seq(1, 5)) {
+    print(i)
+}
+
+gera <- function(num1, num2, passo) {
+    for (x in seq(num1, num2, passo)) {
+        print(x)
+    }
+    print("FIM")
+}
+
+gera(1, 5, 1)
+
+?seq
+
+seq(0, 1, length = 5)
+
+seq(0, 1, by = 0.25)
+
+seq(1, 9, by = 2)
+
+seq(1, 9, by = pi)
+
+seq(1, 6, by = 3)
+
+seq(1.575, 5.125, by = 0.05)
+
+seq(17)
+
+x <- 1
+
+while (x < 11) {
+    print(x)
+    x <- x + 1
+}
+
+gera <- function(num1, num2, passo) {
+    while (num1 < num2) {
+        print(num1)
+        num1 <- num1 + passo
+    }
+    print("FIM")
+}
+
+gera(1, 11, 1)
+```
+
+## Unidade 3 - Principais objetos e funcionalidades
+
+## Unidade 4 - Elaboração e customização de gráficos
+
+## Unidade 5 - Aplicações básicas em Estatística
+
+## Bibliografia
+
+* ALBERT, J. Bayesian Computation with R, Springer., 2007.
+
+* CLAUDE, J. Morphometrics with R, Springer, 2008.
+
+* COOK, D.; SWAYNE, D. F. Interactive and Dynamic Graphics for Data Analysis with R, Springer, 2007.
+
+* CRAWLEY, M. J. The R Book, John Wiley & Sons Ltd, 2007.
+
+* HENRY, M.; STEVENS, H. A Primer of Ecology with R, Springer, 2009.
+
+* OLIVEIRA, P. F.; GUERRA, S.; MCDONNELL, R. Ciência de Dados com R: Introdução. Brasília: Editora IBPAD, 2018.
+
+* R CORE TEAM (2019). R: A language and environment for statistical computing, R Foundation for Statistical Computing, Vienna, Austria. Disponível em: <https://www.r-project.org/>. Acesso em 22 jun. 2020.
+
+* ROBERT, C. P.; CASELLA, G. Introducing Monte Carlo Methods with R, Springer, 2010.
+
+* SOETAERT, K.; CASH, J.; MAZZIA, F. Solving differential equation in R. Springer, 2012.
+
+* TATTAR, P. N.; RAMAIAH, S.; MANJUNATH, B. G. A course in Statistics with R, John Wiley & Sons, 2016.
+
+* VANCE A. Data Analysts Captivated by R's Power. Disponível em: <https://www.nytimes.com/2009/01/07/technology/business-computing/07program.html?_r=0>. Acesso em 22 jun. 2020.
+
+* VERZANI, J. Getting Started with RStudio, O'Reilly Media, Inc., 2011.
+
+* WICKHAM, H. ggplot2: Elegant Graphics for Data Analysis, Springer, 2009.
+
+* WILKINSON, L. The Grammar of Graphics. Springer-Verlag New York, 2 ed, 2005. 691 p, doi 10.1007/0-387-28695-0
+
