@@ -1,0 +1,829 @@
+---
+title: "Introdução aos modelos de regressão linear e não linear com o R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descrição do curso
+
+Este curso irá abordar o uso de modelos de regressão, focando principalmente na 
+Regressão Não-Linear. Serão disponibilizados exemplos práticos utilizando o 
+RStudio como ferramenta para as execuções e serão abordados conceitos básicos 
+do modelo de regressão linear simples, introdução ao modelo de regressão 
+não-linear, métodos para obtenção de valores iniciais para os parâmetros e 
+critérios de seleção de modelos.
+
+## Objetivos
+
+* Entender o conceito de análise de regressão, e saber como realizá-la com o 
+auxílio da linguagem de programação R.
+
+* Conhecer os modelos de regressão não linear.
+
+* Aprender a obter chutes iniciais para realizar uma regressão não linear.
+
+* Entender como utilizar alguns indicadores para selecionar os modelos 
+adequados para um conjunto de dados.
+
+## Unidade 1 - Introdução ao modelo de regressão linear geral
+
+<https://youtu.be/8DKF0m93dqw>
+
+Nesta unidade será introduzido o modelo de Regressão Linear, o que é e 
+para que serve.
+
+### 1.1 Introdução
+
+Análise de Regressão: obter uma equação que explique satisfatoriamente a relação
+entre uma variável resposta e uma ou mais variáveis explicativas.
+
+Prever valores da variável de interesse.
+
+Uma análise de regressão linear pode ser:
+
+* Simples: uma única variável explicativa. Exemplo: temperatura.
+
+* Múltipla: mais de uma variável explicativa. Exemplo: Temperatura e concentração.
+
+### 1.2 Modelo de Regressão Linear Simples (MRLS)
+
+Relação linear entre a variável dependente (Y) e a variável independente (X).
+
+$$
+y_{i} = \beta_{0} + \beta_{1}.x_{i} + \epsilon_{i}
+$$
+### 1.3 Diagrama de Dispersão
+
+Dado um conjunto de dados com duas variáveis quantitativas X e Y, pode-se 
+construir um diagrama de dispersão.
+
+Permite verificar se pode-se assumir um relacionamento linear entre as variáveis
+X e Y.
+
+Tipos de correlação linear:
+    
+* positiva;
+
+* negativa;
+
+* nula.
+
+Caso se observe uma correlação linear entre as variáveis X e Y, podemos 
+quantificar essa associação, para confirmar o que foi observado.
+
+Isso é feito pelo cálculo do **coeficiente de correlação linear de Pearson (r)**.
+
+O coeficiente de correlação linear é de tal forma que -1 <= r <= 1.
+
+Dessa forma:
+
+* r < 0: correlação linear negativa.
+
+* r > 0: correlação linear positiva.
+
+* |r| próximo de 1: correlação linear forte.
+
+### 1.4 Regressão Linear Simples
+
+Ao se confirmar uma relação linear forrte, pode-se considerar uma **regressão 
+linear simples** entre as variáveis, de forma a encontrar uma equação que 
+explique de forma satisfatória essa relação. Essa relação terá a seguinte forma:
+
+$$
+\hat{y}_{i} = \hat{\beta_{0}} + \hat{\beta_{1}} \times x_{i}
+$$
+
+Em que:
+
+$$
+\hat{\beta_{1}} = \frac{S_{XX}}{S_{XY}}
+$$
+e
+
+$$
+\hat{\beta_{0}} = \bar{y} - \hat{\beta_{1}} \times \bar{x}
+$$
+onde:
+
+$$
+\bar{x} = \frac{1}{n} \times \sum_{i=1}^{n}x
+$$
+
+$$
+\bar{y} = \frac{1}{n} \times \sum_{i=1}^{n}y
+$$
+
+$$
+S_{XX} = \sum_{i=1}^{n}X_{i}Y_{i} - \frac{\sum_{i=1}^{n}X_{i} \times \sum_{i=1}^{n}Y_{i}}{n}
+$$
+$$
+S_{XY} = \sum_{i=1}^{n}X_{i}^{2} - \frac{(\sum_{i=1}^{n}X_{i})²}{n}
+$$
+
+* $\hat{\beta_{0}}$ representa o valor de Y quando X = 0;
+
+* $\hat{\beta_{1}}$ representa o valor de Y quando X é incrementado em uma 
+unidade.
+
+### 1.5 Teste de Significância da Regressão
+
+Para testar a significância da regressão, deve-se testar as hipóteses:
+
+* $H_{0}$: $\hat{\beta_{1}} = 0$
+
+* $H_{1}$: $\hat{\beta_{1}} \neq 0$
+
+O **teste estatístico t** é utilizado para testar essas hipóteses.
+
+Se a **hipótese nula** ($H_{0}$) for **aceita**, a **regressão não é significativa**, 
+e não há uma relação linear entre as variáveis.
+
+Ao contrário, se a **hipótese nula** for **rejeitada**, a **regressão é significativa**, 
+e existe uma relação linear entre as variáveis.
+
+
+ **Regra de decisão**:  A um determinado nível de significância, a decisão do 
+ teste de hipóteses se dá por:
+ 
+ * p-valor < nível de significância: reijeitar $H_{0}$.
+ * p-valor > nível de significância: aceitar $H_{0}$.
+ 
+
+### 1.6 Coeficiente de Determinação ($R^{2}$)
+
+Fornece a proporção da variação de Y explicada pela variável X.
+
+Quando $R^{2}$ é próximo de 1, isso indica que a maior parte da variação de Y
+é explicada pelo modelo de regressão.
+
+$$
+R^{2} = \frac{S_{XY}^{2}}{S_{XX} \times S_{YY}}
+$$
+Nesta unidade abordaremos uma Estimação dos parâmetros (técnica da 
+linearização, manipulate); a Seleção do modelo (R2, R2a, Erro médio estimado, 
+erro médio residual) e o Cálculo de valores preditos.
+
+
+### 1.7 Exemplo
+
+Considere o conjunto de dados a seguir:
+
+Tabela 1: quantidade de procaína hidrolisada em moles/litro no plasma humano
+em função do tempo em minutos.
+
+Fonte: Aven e Foldes (1951)
+
+| Tempo (minutos) | Quantidade hidrolisada (moles/litro) |
+|-----------------| -------------------------------------|
+| 2               | 3,5                                  |
+| 3               | 5,7                                  |
+| 5               | 9,9                                  |
+| 8               | 16,3                                 |
+| 10              | 19,3                                 |
+| 12              | 25,7                                 |
+| 14              | 28,2                                 |
+| 15              | 32,6                                 |
+
+Utilizando o R, vamos construir o diagrama de dispersão dos dados, calcularemos
+o coeficiente de correlação linear de Pearson e, em caso de um associação linear
+forte entre as variáveis X e Y, encontraremos a equação de regressão que modela 
+a associação entre elas.
+
+```{r}
+x <- c(2, 3, 5, 8, 10, 12, 14, 15)
+
+y <- c(3.5, 5.7, 9.9, 16.3, 19.3, 25.7, 28.2, 32.6)
+
+print(length(x) == length(y))
+
+# calcula o coeficiente de correlação de pearson
+cor(x, y)
+
+dados <- data.frame(x, y); dados
+
+# instancia o modelo de regressão linear
+model_regressao <- lm(y ~ x, data = dados); model_regressao
+
+summary(model_regressao)
+
+# cria a instancia de uma curva
+plot(x, y)
+curve(-0.985 + 2.161 * x, add = T, col = "blue")
+text(4, 25, expression(y == -0.985 + 2.161 * x), cex = 0.8)
+text(4, 22, expression(R^2 == 0.99), cex = 0.8)
+```
+
+<https://youtu.be/pjt1gktaZUk>
+
+### 1.8 Dados de Secagem
+
+| tempo | pf      |
+| ----  | ------- |
+| 15    | 0.8797  |
+| 15    | 0.8496  |
+| 15    | 0.8696  |
+| 30    | 0.7990  |
+| 30    | 0.73001 |
+| 30    | 0.7659  |
+| 45    | 0.7186  |
+| 45    | 0.6554  |
+| 45    | 0.6763  |
+| 60    | 0.6404  |
+| 60    | 0.5669  |
+| 60    | 0.5940  |
+| 75    | 0.5043  |
+| 75    | 0.4262  |
+| 75    | 0.4104  |
+| 90    | 0.4271  |
+| 90    | 0.3626  |
+
+
+NOTA: Essas são as 17 primeiras linha de dados de secagem. Esse conjunto de dados
+possui o total 48 linhas.
+
+NOTA: A primeira coluna indica o tempo de secagem em minutos e a segunda, o peso final 
+da flor em gramas.
+
+```{r}
+dados <- read.table("dados_secagem.txt", h = T)
+attach(dados)
+x <- tempo
+y <- pf
+plot(x, y)
+reg <- lm( y ~ x)
+summary(reg)
+curve(0.7444486 - 0.0029114 * x, add = T, col = "blue")
+reg2 <- lm(y ~ x + I(x^2), data = dados)
+summary(reg2)
+curve(0.9786 - 0.007955 * x + 0.00001919 * x ^ 2, add = T, col = "green")
+```
+
+## Unidade 2 - Introdução ao modelo de regressão não linear
+
+Nesta unidade abordaremos uma Estimação dos parâmetros (técnica da linearização, manipulate); a Seleção do modelo (R2, R2a, Erro médio estimado, erro médio residual) e o Cálculo de valores preditos. 
+
+### 2.1 Introdução
+
+Os modelos de regressão apresentam, de modo geral, a seguinte forma:
+
+$$
+Y = f(X, \theta) + \epsilon
+$$
+Sendo:
+
+* $f(X, \theta)$ a função das variáveis preditoras **X** e parâmetros **$\theta$** a serem estimados e **$\epsilon$** são os erros aleatórios.
+
+Para variáveis biológicas, modelos lineares raramente explicam a relação entre as variáveis. Essas são, portanto, melhores descritas por **modelos não lineares**.
+
+Os modelos não lineares são caracterizados por funções $f(X, \theta)$ não lineares em pelo menos um dos parâmetros $\theta_{i}$.
+
+Existem diversos modelos de regressão não lineares. Eles possuem finalidades específicas. Alguns dos mais conhecidos são:
+
+* Modelo de Mitscherlich;
+* Modelo Logístico;
+* Modelo de Gompertz;
+* Modelo de Michaelis-Mentem.
+
+### 2.2 Modelo de Mitscherlich
+
+Esse modelo tem como uso principal o estudo da variação do crescimento de vegetais ou produção de determinada cultura (**Y**) em função da quantidade de nutrientes fornecida (**X**). Ele é dado pela seguinte função:
+
+$$
+y = \alpha(1 - 10^{-\gamma(x + \theta)}) + \epsilon
+$$
+
+### 2.3 Modelo Logístico
+
+É um modelo utilizado para crescimento de populações humana, animais e vegetais. De modo usual $\theta > 0$ e $\beta > 0$, em que a função 
+logística aparenta uma curva sigmóide.
+
+$$
+y = \frac{\theta}{1 + e^{-(\alpha + \beta x)}} + \epsilon
+$$
+### 2.4 Modelo de Gompertz
+
+Modelo utilizado para descrever crescimentos, onde este é proporcional não ao tamanho da população, mas ao logaritmo deste tamanho. É dado pela função:
+
+$$
+y = e^{\alpha + \beta \rho x} + \epsilon
+$$
+Em que $\beta < 0$ e $0 < \rho < 1$ e a função de Gompertz é monotonicamente crescente.
+
+### 2.5 Modelo de Michaelis-Menten
+
+Modelo utilizado para estudos da taxa de reações químicas catalizadas por enzimas.
+
+É dado pela função:
+
+$$
+y = \frac{\theta_1 x}{x + \theta_2} + \epsilon
+$$
+### 2.6 Dados de Secagem
+
+Além dos modelos citados anteriormente, existem diversos outros modelos para diversos fins.
+
+No que diz respeito a dados de secagem de plantas, por exemplo, uma série de modelos são utilizados na literatura (Tabela 1).
+
+![Tabela 1](tabela1.png)
+
+### 2.7 Estimação de parâmetros
+
+Como visto, os modelos de regressão possuem parâmetros, os quais devem ser estimados. Para isso, pode-se usar o **Método de Estimação por Mínimos Quadrados Ordinários**
+
+
+### 2.8 Estimação por Mínimos Quadrados Ordinários
+
+As estimativas do vetor de parâmetros $\theta$ para um modelo não linear são aquelas que minimizam a soma de quadrados dos erros, dada por:
+
+$$
+S(\theta) = \sum_{i=1}^{n} (y_i - f(x_i, \theta))^{2}
+$$
+
+Para encontrar os estimadores que geram tais estimativas, é preciso derivar $\S(\theta)$ com relação a cada elemento do vetor $\theta$ e igualar a **0**, obtendo-se p seguinte vetor de equações normais:
+
+$$
+\sum_{i=1}^{n} (y_i - f(x_i, \theta))^{2} (\frac{\delta f(x_i, \theta)}{\delta \theta_j})_{\theta = \hat{\theta}} = 0
+$$
+
+Para modelos lineares esse sistema normalmente possui um vetor único de soluções para os parâmetros $\theta$, em que cada parâmetro depende unicamente dos dados observados.
+
+Já para modelos não lineares, os estimadores $\hat{\theta}$ resultantes do sistema, em geral **NÃO** apresentam forma analítica e as soluções precisam ser obtidas por algum **método de aproximações iterativas**.
+
+### 2.9 Métodos Iterativos
+
+Os principais métodos iterativos são o método de Gauss-Newton, método de Davidon-Fletcher-Powell, método da descida mais íngreme (steepest descent, método da procura pelo gradiente conjugado, método da procura de NelderMead, algoritmo de Golub-Pereyra, entre outros.
+
+### 2.10 Linearização
+
+Todos os processos iterativos dependem da escolha de boas estimativas iniciais e os métodos de ajuste de uma regressão não linear não são exceção.
+
+Uma técnica utilizada para encontrar estimativas iniciais para os parâmetros é a **técnica de linearização**.
+
+Essa técnica consiste em transformar a função a fim de torná-la linear nos parâmetros.
+
+Quando isso for possível, pode-se realizar uma regressão linear da variável transformada sobre os novos parâmetros e usar as estimativas dessa regressão (após aplicar a transformação inversa) como estimativas iniciais para o modelo não linear, ignorando o erro aleatório,
+
+O conjunto de dados que será analisado se refere ao peso final após a secagem de flores de Viola x wittrockiana Gams em relação ao tempo de secagem.
+
+Vamos ajustar ao conjunto de dados dois dos modelos não lineares citados anteioremente. Para isso, vamos utilizar a **técnica de linearização** para encontrar chutes iniciais para os parâmetros dos modelos.
+
+### 2.11 Modelo de Newton
+
+Vamos começar linearizando o modelo para encontrar o chute inicial do parâmetro k:
+
+$$
+y = e^{-kx}
+$$
+$$
+\ln{y} = \ln{e^{-kx}}
+$$
+
+$$
+\ln{y} = -kx
+$$
+
+Portanto, temos o seguinte modelo linearizado
+
+$$
+z = -kx
+$$
+
+Considere o modelo linear $z = \beta_0 + \beta_1 x$
+
+Assim, no modelo linearizado temos:
+
+$$
+k = -\beta_{1}
+$$
+Onde :
+
+$$
+z = \ln{y}
+$$
+
+```{r}
+library(nlstools)
+
+read.table("dados_secagem.txt", h = T)
+attach(dados)
+
+x <- tempo
+y <- pf
+z <- log(y)
+
+model1 <- lm(z ~ x)
+summary(model1)
+
+model2 <- nls(y ~ exp(-k * x), data=dados, start=c(k = 0.0077612), )
+summary(model2)
+
+plot(y ~ x)
+
+curve(exp(-0.0095043 * x), add=T, col="purple")
+
+```
+
+
+Ajustaremos agora o **modelo de Michaelis-Menten** aos dados. Iniciaremos o processo linearizando o modelo para encontrar os chutes iniciais dos parâmetros:
+
+$$
+y = \frac{\theta_1 x}{x + \theta_2}
+$$
+$$
+\frac{1}{y} = \frac{1}{\frac{\theta_1 x}{x + \theta_2}} 
+$$
+
+$$
+\frac{1}{y} = \frac{x + \theta_2}{\theta_1 x} 
+$$
+$$
+\frac{1}{y} = \frac{x}{\theta_1 x} + \frac{\theta_2}{\theta_1 x}
+$$
+$$
+\frac{1}{y} = \frac{1}{\theta_1} + \frac{\theta_2}{\theta_1}.\frac{1}{x}
+$$
+$$
+y^{*} = \beta_0 + \beta_1 \times x^{*}
+$$
+
+Onde:
+
+$$
+y^{*} = \frac{1}{y}
+$$
+
+$$
+x^{*} = \frac{1}{x}
+$$
+
+$$
+\beta_1 = \frac{\theta_2}{\theta_1}
+$$
+$$
+\beta_0 = \frac{1}{\theta_1}
+$$
+```{r}
+read.table("dados_secagem.txt", h = T)
+attach(dados)
+
+x <- tempo
+y <- pf
+
+u <- 1/x
+v <- 1/y
+
+model1 <- lm(v ~ u)
+
+summary(model1)
+
+# Extrair apenas os valores numéricos dos coeficientes
+coeficientes <- as.numeric(coef(model1))
+
+# Atribuir os coeficientes a variáveis separadas
+intercepto <- coeficientes[1]
+coef_u <- coeficientes[2]
+
+# Imprimir os valores
+print(intercepto)
+print(coef_u)
+```
+
+
+
+$$
+\beta_0 = \frac{1}{\theta_1} = 4.8611
+$$
+$$
+\theta_1 = 0.2057148
+$$ 
+
+
+$$
+\beta_1 = \frac{\theta_2}{\theta_1} = -80.8410
+$$
+$$
+\theta_2 = -80.8410 \times \theta_1 = -80.8410 \times 0.2057148 = -16.63019
+$$
+
+```{r}
+library(nlstools)
+
+read.table("dados_secagem.txt", h = T)
+
+attach(dados)
+
+x <- tempo
+y <- pf
+
+u <- 1/x
+v <- 1/y
+
+model1 <- lm(v ~ u)
+
+summary(model1)
+
+# Extrair apenas os valores numéricos dos coeficientes
+coeficientes <- as.numeric(coef(model1))
+
+# Atribuir os coeficientes a variáveis separadas
+intercepto <- coeficientes[1]
+coef_u <- coeficientes[2]
+
+beta0 <-  intercepto
+
+beta1 <- coef_u
+
+theta1 <- 1/beta0; theta1
+
+theta2 <- beta1 * theta1; theta2
+
+model2 <- nls(y ~ ((t1 * x) / (x + t2)), data=dados, start=c(t1=theta1, t2=theta2), trace=T)
+
+summary(model2)
+
+# Extrair apenas os valores numéricos dos coeficientes
+coeficientes <- as.numeric(coef(model2))
+summary(model2)
+
+# Atribuir os coeficientes a variáveis separadas
+intercepto <- coeficientes[1]
+coef_u <- coeficientes[2]
+
+
+plot(pf ~ tempo)
+curve(intercepto * x / (x + coef_u), add=T, col="orange")
+
+
+```
+
+
+## **NOTA: REINICIAR A ESCRITA NO VÍDEO 2 DA UNIDADE 2**
+
+
+**Questão 1**: O Objetivo do experimento foi avaliar o efeito de diferentes 
+concentrações de Sulfato de Alumínio (g) sobre o comprimento (mm) de raiz de 
+alface (Grand rapids).
+
+| Concentração (x) | 0     | 0,04 | 0,06 | 0,16 | 0,32 | 0,64 |
+| :--------------- | :---- | :--- | :--- | :--- | :--- | :--- |
+| Comprimento (y)  | 10,67 | 7,64 | 7,73 | 2,58 | 2,38 | 0,02 |
+
+Assinale a alternativa incorreta.
+
+a) Considerando o ajuste do modelo de regressão não-linear y=α×eβxy=α×eβx 
+aos dados, o comprimento médio da raiz de alface para uma concentração de 
+sulfato de alumínio de 0,1 g é de 5,37 mm.
+
+b) O diagrama de dispersão dos dados sugere um comportamento não linear entre a 
+concentração de Sulfato de Alumínio e o comprimento da raiz de alface.
+
+c) Considerando o ajuste do modelo de regressão não-linear y=α×eβxy=α×eβx aos 
+dados, o coeficiente de determinação ajustado, obtido com auxílio do pacote 
+qpcR no R, é de 96,76%.
+
+d) Considerando o modelo de regressão não-linear y=α×eβxy=α×eβx e a técnica da 
+linearização, as estimativas para αα e ββ  são 10,80 e -6,98, respectivamente.
+
+e) Considerando o ajuste do modelo de regressão não-linear y=α×eβxy=α×eβx aos 
+dados, o Erro Médio Estimado é de 0,8829 mm.
+
+**Questão 2**: Os dados a seguir são referentes a produção (t/ha) (y) de 
+cana-de-açúcar com relação aos níveis de doses (kg/ha) de um nutriente (x).
+
+| x  | -5  | -3  | -1  | 1   | 3   | 5   |
+| :- | :-- | :-- | :-- | :-- | :-- | :-- |
+| y  | 127 | 151 | 379 | 421 | 460 | 426 |
+
+O modelo de Mitscherlich, cuja equação é dada por y=A[1−10−c(x−b)]y=A[1−10−c(x−b)], 
+é bastante usado em estudos de produtividade em ciências agrárias. 
+
+Considerando esse modelo, assinale a alternativa incorreta.
+
+(DICA: use o comando manipulate no R para encontrar chutes iniciais adequados. 
+Caso não consiga, use A = 450, b = −6 e c = 0,2 como chutes iniciais).
+
+a) O diagrama de dispersão dos dados sugere um comportamento não linear entre a 
+produção de cana-de-açucar e os níveis de doses do nutriente.
+
+b) Considerando o ajuste do modelo de Mitscherlich aos dados, o Erro 
+Médio Estimado é de 18,94%.
+
+c) Considerando o modelo de Mitscherlich, as estimativas de mínimos quadrados 
+para os parâmetros A, b e c são 523,3, -6,03 e 0,0867, respectivamente.
+
+d) Considerando o ajuste do modelo de Mitscherlich aos dados, o coeficiente de 
+determinação ajustado é de 79,71%.
+
+e) Considerando o ajuste do modelo de Mitscherlich aos dados, a produção média 
+esperada para x=2 é de aproximadamente 418 t/ha.
+
+**Questão 3**: Seja o seguinte conjunto de dados, que considera a relação observada 
+entre as variáveis massa de fertilizante (g/m²) e produção de grama (g/m²).
+
+| Massa de fertilizante (x) | 25 | 50 | 75 | 100 | 125 | 150 | 175 | 200 | 225 | 250 |
+| :------------------------ | :- | :- | :- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| Produção de grama (y)     | 84 | 80 | 90 | 134 | 148 | 169 | 206 | 244 | 212 | 248 |
+
+Considerando o ajuste de um modelo de regressão linear simples do tipo
+y = ß0 + ß1_x_ aos dados, assinale a alternativa incorreta.
+
+a) Ao se testar a significância da regressão (nível de significância de 5%), 
+obtém-se p-valor=4,67 x 10-6, o que indica que a regressão é significativa.
+
+b) O coeficiente de determinação é de 93,61%.
+
+c) As estimativas obtidas para os parâmetros do modelo são ß^ß^0=47,93 e ß^ß^1=0,83, respectivamente.
+
+d) O coeficiente de correlação linear dos dados é de 96,75%.
+
+e) O diagrama de dispersão dos dados aponta para uma relação linear negativa entre 
+as variáveis massa de fertilizante e produção de grama.
+
+**Questão 4**: Um estudo foi feito para investigar o efeito de um desinfetante. 
+Foram preparadas soluções, nas quais o desinfetante foi diluído em quantidades 
+fixas de água, para concentrações do desinfetante de 1% a 8%. 
+Foi observado o número de bactérias que sobreviveram, após superfícies serem limpas com uma das soluções.
+
+| Concentração (x)    | 1 | 1 | 2 | 2  | 3  | 3  | 3  | 3  | 3  | 3  | 5  | 5  | 5  | 5  | 7  | 8  |
+| :------------------ | :- | :- | :- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| Nº de bactérias (y) | 29 | 32 | 26 | 25 | 21 | 24 | 26 | 28 | 21 | 22 | 14 | 24 | 13 | 15 | 18 | 13 |
+
+Assinale a alternativa incorreta.
+
+a) Considerando o ajuste de um modelo de regressão linear simples do tipo 
+y^y^= ß0 + ß1 xx a estimativa para o número médio de bactérias para a 
+concentração de 5,5% do desinfetante é de aproximadamente 19 unidades
+
+b) O diagrama de dispersão dos dados sugere um comportamento linear entre a 
+concentração do desinfetante e o número médio de bactérias.
+
+c) Considerando o ajuste de um modelo de regressão linear simples do tipo 
+y^y^ = ß0 + ß1 xx aos dados, espera-se que, para cada aumento em uma 
+unidade na concentração do desinfetante, o número médio de bactérias diminui 
+em aproximadamente 2 unidades.
+
+d) O coeficiente de correlação dos dados é positivo.
+
+e) Considerando um modelo de regressão linear simples, a equação do modelo ajustado
+é y^y^ =31,14−2,18x31,14−2,18x.
+
+**Questão 5**: Considere o seguinte conjunto de dados, referente ao conteúdo 
+acumulado de potássio liberado no solo (mg) (y) dias após a incubação de 
+esterco de codorna (x – dias).
+
+| x   | y      |        |        |
+| :-- | :----- | :----- | :----- |
+| 15  | 51,03  | 57,76  | 26,60  |
+| 30  | 60,65  | 87,07  | 64,67  |
+| 45  | 91,28  | 105,22 | 72,74  |
+| 60  | 81,88  | 97,62  | 90,14  |
+| 75  | 89,88  | 113,22 | 90,91  |
+| 90  | 115,39 | 112,63 | 87,51  |
+| 120 | 104,69 | 120,58 | 114,32 |
+| 150 | 130,07 | 117,65 | 111,69 |
+| 180 | 128,54 | 126,88 | 127,00 |
+| 210 | 134,17 | 149,66 | 118,25 |
+| 240 | 132,67 | 154,48 | 129,11 |
+| 270 | 151,83 | 147,66 | 127,30 |
+
+Considerando o ajuste do modelo de regressão não-linear θ1xx+θ2θ1xx+θ2 
+(modelo de Michaelis-Menten) aos dados, assinale a alternativa incorreta.
+
+a) Com o auxílio da técnica da linearização, chega-se às seguintes estimativas 
+iniciais para os parâmetros do modelo: θ^1=63,01eθ^2=−0,0026θ^1=63,01eθ^2=−0,0026.
+
+b) Utilizando a função nls do R, chega-se ao seguinte modelo ajustado:
+y^=157,63xx+40,57y^=157,63xx+40,57.
+
+c) Para um tempo de 45 dias de incubação de esterco de codorna, o conteúdo de 
+potássio liberado é de 93 mg.
+
+d) Para que se chegue a um total de 116,52 mg de potássio liberado, é necessário 
+um tempo de incubação de 115 dias.
+
+Pelo diagrama de dispersão dos dados, é possível notar a presença de uma 
+relação não-linear entre as variáveis conteúdo acumulado de potássio 
+liberado no solo e dias após a incubação de esterco de codorna.
+
+Questão 6: Considere os dados experimentais referentes y (comprimento em cm 
+de um tipo de feijoeiro) obtidos em função de x (quantidade de água em ml observada em suas raízes).
+
+| y  | 1,3 | 1,3 | 1,9 | 3,4 | 5,3 | 7,1 | 10,6 | 13,5 | 16,0 | 16,4 | 18,3 | 20,9 | 20,5 | 21,3 |
+| :- | :-- | :-- | :-- | :-- | :-- | :-- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| x  | 0,5 | 1,0 | 1,5 | 2,0 | 2,5 | 3,0 | 3,5  | 4,0  | 4,5  | 5,0  | 5,5  | 6,0  | 6,5  | 7,0  |
+
+Considere o modelo Logístico, cuja equação é dada por y=α1+exp(β−γx)y=α1+exp⁡(β−γx).
+
+Após ajuste desse modelo aos dados, calcule, em centímetros (cm), o comprimento 
+médio esperado do feijoeiro para a quantidade de água em sua raiz de 5,8 ml.
+
+Questão 7: Considere o seguinte conjunto de dados, em que a variável preditora x
+corresponde ao número de dias que pacientes de um hospital ficaram 
+hospitalizados e a variável resposta y corresponde a um índice de prognóstico 
+para o tempo de recuperação, sendo que valores grandes indicam um bom prognóstico.
+
+| x  | 2  | 5  | 7  | 10 | 14 | 19 | 26 | 31 | 34 | 38 | 45 | 52 | 53 | 60 | 65 |
+| :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
+| y  | 54 | 50 | 45 | 37 | 35 | 25 | 20 | 16 | 18 | 13 | 8  | 11 | 8  | 4  | 6  |
+
+Verifica-se na literatura que a relação entre a variável resposta e a variável 
+preditora pode ser representada pelo modelo Logarítmico 
+(y=a exp(−kx))(y=a exp(−kx)). Após ajustar o modelo ao conjunto de dados, 
+calcule o valor do coeficiente de determinação (R2)(R2) e do coeficiente de 
+determinação ajustado (R2a)(Ra2) com auxílio do pacote qpcR no R.
+
+a) R2R2= 0,9979 (99,8%);R2aRa2= 0,9370 (93,7%)
+
+b) R2R2= 0,9879 (98,8%);R2aRa2= 0,9870 (98,7%)
+
+c) R2R2= 0,9979 (99,8%);R2aRa2= 0,9670 (96,7%)
+
+d) R2R2= 0,9777 (97,8%);R2aRa2= 0,9370 (93,7%)
+
+e) R2R2= 0,9999 (99,9%);R2aRa2= 0,9870 (98,7%)
+
+Questão 8: Considere os dados experimentais referentes y (comprimento em cm 
+de um tipo de feijoeiro) obtidos em função de x (quantidade de água em ml 
+observada em suas raízes).
+
+| y  | 1,3 | 1,3 | 1,9 | 3,4 | 5,3 | 7,1 | 10,6 | 13,5 | 16,0 | 16,4 | 18,3 | 20,9 | 20,5 | 21,3 |
+| :- | :-- | :-- | :-- | :-- | :-- | :-- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| x  | 0,5 | 1,0 | 1,5 | 2,0 | 2,5 | 3,0 | 3,5  | 4,0  | 4,5  | 5,0  | 5,5  | 6,0  | 6,5  | 7,0  |
+
+Considere os modelos:
+
+- M1: Gompertz: y=αexp{−exp(β−γx)}y=αexp⁡{−exp⁡(β−γx)}
+
+- M2: Logístico: y=α1+exp(β−γx)y=α1+exp⁡(β−γx)
+
+- M3: Weibull: y=α−βexp(−γx)y=α−βexp⁡(−γx)
+
+Considerando esses modelos, assinale a alternativa correta.
+
+(DICA: use o comando manipulate o R para encontrar chutes iniciais adequados. 
+Caso não consiga, use αα = 20, ββ = 2.1,  e γγ_=0.40_)
+
+a) Após ajuste dos três modelos aos dados e com relação ao erro médio relativo 
+(EMR) , vale que M2 > M1 > M3
+
+b) Após ajuste dos três modelos aos dados e com relação ao erro médio estimado 
+(EME) , vale que M1 > M2 > M3
+
+c) Após ajuste dos três modelos aos dados e com relação ao coeficiente de 
+determinação (R2), vale que M3 > M2 > M1
+
+d) Considerando indicadores de qualidade de ajuste coeficiente de determinação 
+ajustado, erro médio relativo e erro médio estimado, pode-se 
+concluir que o modelo M1 (Gompertz) é o mais adequado.
+
+e) Após ajuste dos três modelos aos dados e com relação ao coeficiente de 
+determinação ajustado (R2a), vale que M2 > M1 > M3
+
+## Referências
+
+* CHARNET, et al. Análise de modelos de regressão linear: com aplicações. 
+2. ed. Campinas: Editora da UNICAMP, 2008. 368p
+
+* FERNANDES, T. Curva de crescimento do fruto do cafeeiro em diferentes 
+alinhamentos de plantio utilizando modelos não lineares. Dissertação (Mestrado)
+- Universidade Federal de Lavras. Lavras, 2012.
+
+* FONSECA, J. Composição centesimal e modelagem da curva de Desidratação para 
+perda de massa de Viola × wittrockiana. Trabalho de Conclusão de curso
+(Curso de Ciência e Tecnologia de Alimentos) - Universidade Federal do Pampa. 
+Itaqui, 2018.
+
+* GASPARIN, P. P. (2012). Secagem da Mentha piperita em leito fixo utilizando 
+diferentes temperaturas e velocidades de ar.
+
+* R CORE TEAM (2021). R: A language and environment for statistical computing. 
+R Foundation for Statistical Computing, Vienna, Austria. 
+URL <https://www.R-project.org/>.
+
+* RADÜNZ, L. L. et al. Avaliação da cinética de secagem de carqueja. 
+Revista engenharia na agricultura - REVENG, v. 19, n. 1, p. 19–27, 26 jan. 2011. 
+doi10.13083/reveng.v19i1.147
+
+* RITZ, C.; STREIBIG, J. C. Nonlinear Regression with R. 2009. 151p. 
+<https://doi.org/10.1007/978-0-387-09616-2>
+
+* SILVA, L A.; ZAMBIAZI, R. C.; CHAVES, F. C.; FISCHER, S. Z. (2015). 
+Avaliação das condições de extração sobre o teor de compostos fenólicos 
+totais de Viola x wittrockiana. In: Congresso Brasileiro de Processamento 
+mínimo e Pós-colheita de frutas, flores e hortaliças, 001. Aracaju-SE.
+
+* TATTAR, P. N.; RAMAIAH, S.; MANJUNATH, B. G. A course in Statistics with R, 
+John Wiley & Sons, 2016.
+
+* VEN, M., FOLDES, F. The Chemical Kinetics of Procaine and Chloroprocaine 
+Hydrolysis. Science, 24 Aug 1951.
+<https://doi.org/10.1126/science.114.2956.206.b>
+
+* VERZANI, J. Getting Started with RStudio, O'Reilly Media, Inc., 2011.
+
+
+
+
