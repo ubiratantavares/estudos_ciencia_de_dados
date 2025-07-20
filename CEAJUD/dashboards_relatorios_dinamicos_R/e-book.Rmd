@@ -1,0 +1,158 @@
+---
+title: "Dashboards e Relatórios Dinâmicos com o R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Módulo 1
+
+### 1.1 Apresentação do curso
+
+<https://youtu.be/YVTFIymf_MU>
+
+### 1.2 Diretrizes para criar aplicações
+
+<https://youtu.be/DScDmoBAnXQ>
+
+### 1.3 Anatomia de uma aplicação shiny
+
+<https://youtu.be/OIwn6MBqBX8>
+
+### 1.4 Executando a aplicação do Rstudio IDE
+
+<https://youtu.be/AfthL8fzwac>
+
+### 1.5 Componentes para aplicação shiny
+
+<https://youtu.be/KsRPD3nAa6k>
+
+### 1.6 Compreendendo mecanismos de reatividade
+
+<https://youtu.be/cTVOBJzkWpU>
+
+
+## Módulo 2
+
+### 2.1 Inputs, Outputs e reatividade
+
+<https://youtu.be/rqCPgf6gyhs>
+
+###  2.2 Inputs: caixas de marcação
+
+<https://youtu.be/jpf_Kd5ovT0>
+
+### 2.3 Inputs: listas e botões de seleção
+
+<https://youtu.be/BHsY1WIs8gU>
+
+### 2.4 Inputs: texto, números e datas
+
+<https://youtu.be/z-dKfzBRDxk>
+
+### 2.5 Inputs: botões de ação
+
+<https://youtu.be/NdLV4gKyAlA>
+
+### 2.6 Principais outputs
+
+<https://youtu.be/HzB_hFkR7ts>
+
+### 2.7 Grafo de reatividade
+
+<https://youtu.be/EqmV27RLD7A>
+
+### 2.8 Construtores de reatividade
+
+<https://youtu.be/Ps3ZdFUFdL8>
+
+
+### 2.9 Compreendendo o funcionamento de aplicações - parte 1
+
+<https://youtu.be/L1zCdf1lLTI>
+
+### 2.10 Compreendendo o funcionamento de aplicações - parte 2
+
+<https://youtu.be/dFMt9lt2HiM>
+
+## Módulo 3
+
+### 3.1 Layouts: temas e html
+
+<https://youtu.be/y7wavgwSjds> 
+
+### 3.2 Principais estruturas de layouts
+
+<https://youtu.be/U4pnMmB5Ico>
+
+### 3.3 Recomendações para desenvolvimento
+
+<https://youtu.be/ln8c3_SjTd8>
+
+### 3.4 Menus de navegação
+
+<https://youtu.be/8YFtrhNYC0Q>
+
+### 3.5 Temas para aplicações
+
+<https://youtu.be/XY_4at44VTs>
+
+### 3.5 HTML e CSS
+
+<https://youtu.be/YBZsCORbVLk>
+
+### 3.6 Aplicação, votações e preparação dos dados
+
+<>
+
+### 3.7 Aplicação, votações e disposição do conteúdo
+
+<>
+
+### 3.8 Aplicação, votações e funções do backend
+
+<>
+
+### 3.9 Aplicação, votações e componentes para seleção
+
+<>
+
+### 3.10 Aplicação, votações e inclusão dos gráficos
+
+<>
+
+### 3.11 Aplicação, votações e inclusão da tabela
+
+<>
+
+### 3.12 Aplicação, votações e inclusão dos info-boxes
+
+<>
+
+### 3.13 Aplicação, votações e documentação de funções
+
+<>
+
+## Módulo 4
+
+
+## Módulo 5
+
+
+## Módulo 6
+
+
+## Módulo 7
+
+
+## Módulo 8
+
+
+## Módulo 9
+
+
+## Módulo 10
+
