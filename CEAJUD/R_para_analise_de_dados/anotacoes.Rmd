@@ -1,0 +1,325 @@
+---
+title: "R para Análise de Dados"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Módulo 1
+
+### 1.1 Conhecendo o R
+
+<https://youtu.be/YK4PeQXC8eo>
+
+### 1.2 Material Didático
+
+<https://youtu.be/rsdEvgABhkc>
+
+### 1.3 Configuração do Ambiente de Trabalho
+
+<https://youtu.be/Qb0DQwJ_vdg>
+
+### 1.4 Configuração do ambiente no windows
+
+<https://youtu.be/u3KJehejfW4>
+
+### 1.5 Configuração do ambiente no gnu linux
+
+<https://youtu.be/DNcIv-eW44k>
+
+### 1.6 Conhecendo o Rstudio IDE
+
+<https://youtu.be/3ChrS9X4xYI>
+
+## Módulo 2
+
+### 2.1 Ambientação ao R
+
+<https://youtu.be/a7J23ki3WGg>
+
+### 2.2 Execução em modo repl e batch
+
+<https://youtu.be/3X4Wkl8_TXA>
+
+### 2.3 Instruções e comentários
+
+<https://youtu.be/a-0ihq32UqM>
+
+### 2.4 Atribuição e espaço de trabalho
+
+<https://youtu.be/7Nkkl0cjo_o>
+
+### 2.5 Ordem de procura e namespaces
+
+<https://youtu.be/mu2vpVX1RDs>
+
+### 2.6 Diretório de trabalho
+
+<https://youtu.be/PDWjL0apnX8>
+
+### 2.7 Arquivos da linguagem R
+
+<https://youtu.be/jdjTttmz9yw>
+
+### 2.8 Instalação e uso de pacotes
+
+<https://youtu.be/3ZmyG-KdtZQ>
+
+### 2.9 Acesso à documentação
+
+<https://youtu.be/X5ncmaczedY>
+
+### 2.10 O guia de sobrevivência do iniciante
+
+<https://youtu.be/JXWF2UTn9Ng>
+
+## Módulo 3
+
+### 3.1 Aritmética básica
+
+<https://youtu.be/K_Gvu73FEkI>
+
+### 3.2 Operações matemáticas
+
+<https://youtu.be/-ELZnmkETD0>
+
+### 3.3 Comparações e operadores lógicos
+
+<https://youtu.be/hMQjZWaH0ls>
+
+### 3.4 Cartões de referência
+
+<https://youtu.be/st2g4wOza-c>
+
+### 3.5 Operações com vetores
+
+<https://youtu.be/mnaoBQhAoM8>
+
+### 3.6 Classes e métodos
+
+<https://youtu.be/aDoxVKUM2js>
+
+### 3.7 Sequências e repetições
+
+<https://youtu.be/RaqtQ2VstdE>
+
+### 3.8 Seleção e modificação de vetor
+
+<https://youtu.be/hLum5M7lh1k>
+
+### 3.9 Funções estatísticas
+
+<https://youtu.be/LsIzA6UMf6U>
+
+## Módulo 4
+
+### 4.1 Estrutura de controle if else
+
+<https://youtu.be/Guw7NSEIPgA>
+
+```{r}
+faltas <- 10
+
+nota <- 70
+
+if (nota >= 70 & faltas <- 15) {
+    result <- "Aprovado"
+} else if (nota < 70) {
+    result <- "Reprovado por nota"
+} else {
+    result <- "Reprovado por faltas"
+}
+result
+```
+
+```{r}
+h <- 8
+
+if (h >= 6 & h < 12) {
+    saudacao <- "Bom dia"
+} else if (h >= 12 & h < 18) {
+    saudacao <- "Boa tarde"
+} else if (h >= 18 & h < 24) {
+    saudacao <- "Boa noite"
+} else {
+    saudacao <- "Não enviar mensagem"
+    stop(saudacao)
+}
+```
+
+### 4.2 Estrutura de controle if else aplicação
+
+<https://youtu.be/2ZB9SQovVB0>
+
+```{r}
+#---- IF ELSE cidade -----------------------------------------------------------
+
+grupo_em <- c("Gi=oiás", "Minas Gerais", "Rondônia", "Roraima",
+              "Santa Catarina", "São Paulo", "Sergipe")
+
+grupo_na <- c("Bahia", "Paraíba")
+
+estado <- "Sergipe"
+estado <- "Rio de Janeiro"
+estado <- "Bahia"
+estado <- "Inglaterra"
+
+if (estado %in% grupo_em) {
+    msg <- paste("para vocẽ que mora em ", estado)
+} else if (estsado %in% grupo_na) {
+    msg <- paste("para vocẽr que nora na", estado)
+} else {
+    msg <- paste("para você que mora no", estado)
+}
+```
+
+### 4.3 Estrutura de controle switch
+
+<https://youtu.be/8grSc-AmfV8>
+
+```{r}
+tipo <- "aritmetica"
+
+x <- 1:10
+
+switch(tipo, 
+       "aritmetica" = {
+           mean(x)
+       },
+       "harmonica" = {
+           length(x)/sum(1/x)
+       },
+       "geometrica" = {
+           prod(x)^(1/length(x))
+       },
+       {
+           NA_real_
+       })
+
+
+findInterval(5.5, c(0, 2, 5, 10, Inf))
+```
+
+### 4.4 Versões vetoriais das estruturas de controle
+
+<https://youtu.be/OEaA5aF_kuM>
+
+```{r}
+# notas dos alunos
+
+notas <- c("Ana" = 89, "Márcia" = 81,
+           "Tiago" = 65, "Rodrigo" = 35)
+
+# usando IF-ELSE vetorial
+ifelse(notas >= 70, "Aprovado",
+       ifelse(notas >= 40, 
+              "Exame", 
+              "Reprovado"))
+
+
+# usando switch vetorial
+dplyr::case_when(notas >= 70 ~ "Aprovado",
+                 notas >= 40 ~ "Exame",
+                 TRUE ~ "Reprovado")
+
+```
+
+### 4.5 Estrutura de repetição for
+
+<https://youtu.be/R3D5rn5IkSo>
+
+```{r}
+tx_juros <- 0.01
+
+n_meses <- 12
+
+rend <- numeric(n_meses)
+
+rend[1] <- 100
+
+for (i in 2:n_meses) {
+    rend[i] <- rend[i - 1] * (1 + tx_juros)
+}
+
+rend
+
+y <- c(1,2, 1, 4, 0, NA, 3, 2, 4)
+
+s <- 0
+
+for (i in y)
+    if (s > 10) break
+    if (is.na(i)) next
+    s < s + i
+    print(i)
+
+
+n <- 20
+
+x <- numeric(n)
+
+x[1] <- 1
+x[2] <- 1
+
+for (i in 3:n) {
+    x[i] <- x[i - 1] + x[i - 2]
+}
+
+x
+
+invest <- 1000
+
+juros <- c(5430, 4936, 4688, 5183, 5430, 4668, 5678, 5017, 4638) / (1000 * 100)
+
+juros
+
+for (j in juros) {
+    invest <- invest * (1 + j)
+    cat("Taxa do mês: ", j, "\t Valor: ", invest, "\n")
+}
+
+invest
+
+```
+
+
+### 4.6
+
+<>
+
+```{r}
+
+```
+
+
+### 4.7
+
+<>
+
+```{r}
+
+```
+
+
+### 4.8
+
+<>
+
+```{r}
+
+```
+
+## Módulo 5
+
+## Módulo 6
+
+## Módulo 7
+
+## Módulo 8
+
+## Módulo 9
+
+## Módulo 10
+
