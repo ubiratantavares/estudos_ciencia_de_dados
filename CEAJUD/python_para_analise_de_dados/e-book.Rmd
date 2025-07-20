@@ -1,0 +1,107 @@
+---
+title: "Python para Análise de Dados"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Módulo 1
+1.1 Introdução
+Fazer um resumo textual da vídeo-aula do link https://youtu.be/2nYFEJsCYp4
+1.2 Primeiros Passos
+Fazer um resumo textual da vídeo-aula do link https://youtu.be/C51tbaezsDk
+1.3 Mais Sobre Variáveis
+Fazer um resumo texxtual da vídeo-aula do link https://youtu.be/A_9a3RpwyiE
+1.4 Criação de Scripts
+Fazer um resumo textual da vídeo-aula do link https://youtu.be/CcPQqtSSjBM
+1.5 Leitura de Dados Externos
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/F5JLa5xmK2s
+1.6 Execução de Scripts IDEs e Importações
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/4N587o8S19Y
+Módulo 2
+2.1 Testes Condicionais - Parte 1
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/1hlcECojf8M
+2.2 Testes Condicionais - Parte 2
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/k6PFY3kNVf4
+2.3 Condicionais Múltiplos Alinhados - Parte 1
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/HsDWcleNJvk
+2.4 Condicionais Múltiplos Alinhados - Parte 2
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/zSQmRdTeHyg
+2.5 Condicionais Múltiplos Alinhados - Parte 3
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/oDUYYho_MVw
+2.6 Condicionais Múltiplos Alinhados - Parte 4
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/oDUYYho_MVw
+2.7 Estrutura de Repetição For
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/HCBSpKiAnGo
+2.8 Estrutura de Repetição While
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/gbQuyaEQGYw
+Módulo 3
+3.1 Listas
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/uhXEJEZUums
+3.2 Funções de listas
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/zc7fUvqD9BM
+3.3 Tuplas
+Fazer um resumo textual do víde-aula do link https://youtu.be/jsDrQgsVNaM
+3.4 Funções
+Fazer um resumo textual do víde-aula do link https://youtu.be/wRNg1hAd-eo
+3.5 Retorno e Boas Práticas
+Fazer um resumo textual do víde-aula do link https://youtu.be/Cho5MXOhl9o
+Módulo 4
+4.1 Introdução a Dicionários
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/YDsYN8-cMzU
+4.2 Operações em Dicionários
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/m8zJqwK8WtI
+4.3 Impressão de Dicionários e Métodos
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/-4701oINRDk
+4.4 Ordenação de Dicionários
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/gVn-SJMwgls
+4.5 Introdução a Matrizes
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/wPAgQBFfLDo
+4.6 Manipulação de Matrizes
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/ucmv9pCLmo8
+4.7 Submatrizes e Copias de Matrizes
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/-Xlrd1S3F2Y
+Módulo 5
+5.1 Strings e suas Funções
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/5jFTGcwqiFY
+5.2 Formatando Strings
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/YuDkR4OfRyc
+5.3 Arquivos e Leitura
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/rKjfa8QDvtk
+5.4 Escrita de Arquivos
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/kTgf7PUPgWI
+5.5 Arquivos Delimitados
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/dd23NeHxy04
+5.6 Biblioteca Padrão de CVS
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/nyUzofcE_bA
+Módulo 6
+6.1 Introdução ao Numpy
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/NjNWRJZkvZw
+6.2 Inicialização de Arrays
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/_VsiWE5yTLc
+6.3 Alterando Arrays
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/SHlN_i8H3jI
+6.4 Funções Matemáticas
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/wR2EoSBYuOM
+6.5 CSVs e Numpy
+Fazer um resumo textual do vídeo-aula do link https://youtu.be/lfbbxNA2TGk
+Módulo 7
+7.1 Numpy e Operações Lógicas
+https://youtu.be/bCsu4H62eGc
+7.2 Ordenação e Estatística Básica
+https://youtu.be/42qP6O8szcA
+7.3 Matplotlib Backup
+https://youtu.be/OMGXWsvY3Ls
+7.4 Multiplos plots e tipos de gráfico
+https://youtu.be/39DQv5kveHU
+7.5 Histogramas
+https://youtu.be/YTm090c1O8g
+
+Módulo 8
+
+Módulo 9
+
+Módulo 10
+
